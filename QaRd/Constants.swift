@@ -51,6 +51,7 @@ class Constants {
         "slack.com" : (.brands, .slackHash),
         "soundcloud.com" : (.brands, .soundcloud),
         "steampowered.com" : (.brands, .steamSymbol),
+        "steamcommunity.com" : (.brands, .steamSymbol),
         "twitter.com" : (.brands, .twitter),
         "tumblr.com" : (.brands, .tumblr),
         "twitch.tv" : (.brands, .twitch),
