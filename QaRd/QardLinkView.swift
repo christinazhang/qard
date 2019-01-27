@@ -38,7 +38,8 @@ class QardLinkView: UIView {
         
         self.messageLabel.font = UIFont(name: "Avenir-Medium", size: 16)
         self.messageLabel.textColor = UIColor.black
-        self.messageLabel.text = link.message
+        let usernameMessageDelimiter = (link.username != nil && link.message != nil) ? ": " : ""
+        self.messageLabel.text = "\(link.username ?? "")\(usernameMessageDelimiter)\(link.message ?? "")"
         self.messageLabel.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(self.messageLabel)
         

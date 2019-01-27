@@ -47,6 +47,7 @@ class Constants {
         "pinterest" : (.brands, .pinterestP),
         "qq.com" : (.brands, .qq),
         "snapchat" : (.brands, .snapchatGhost),
+        "nintendo switch" : (.brands, .nintendoSwitch),
         "slack.com" : (.brands, .slackHash),
         "soundcloud.com" : (.brands, .soundcloud),
         "steampowered.com" : (.brands, .steamSymbol),
@@ -54,6 +55,14 @@ class Constants {
         "tumblr.com" : (.brands, .tumblr),
         "twitch.tv" : (.brands, .twitch),
         "weibo.com" : (.brands, .weibo)
+    ]
+    
+    static let linkMap: [FontAwesome : String] = [
+        .facebookF : "https://www.facebook.com/",
+        .linkedinIn : "https://www.linkedin.com/in/",
+            .github : "https://github.com/",
+            .twitter : "https://twitter.com/",
+            .steamSymbol : "https://steamcommunity.com/id/"
     ]
 }
 

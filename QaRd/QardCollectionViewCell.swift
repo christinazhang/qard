@@ -13,6 +13,7 @@ import FontAwesome_swift
 
 class QardCollectionViewCell: UICollectionViewCell {
     // Isaiah this is so bad omg
+    // ITS FINE HACKATHON SPIRIT ALSO WE HAVE THIS IN CERTIF AND REAL PRODUCT CODE
     var qServerManager: QServerManager = QServerManager.shared()
     
     var qard: Qard? {
@@ -22,12 +23,12 @@ class QardCollectionViewCell: UICollectionViewCell {
             
             let gradientLayer = CAGradientLayer()
             gradientLayer.frame = self.bounds
-            gradientLayer.colors = self.qard?.gradient
+            gradientLayer.colors = Constants.gradients[self.qard?.gradient ?? 0]
             self.layer.insertSublayer(gradientLayer, at: 0)
 //            self.backgroundColor = self.qard?.color
             
             if let qard = qard {
-                qServerManager.generateQRCode(userId: "wiji", qard: qard).response { response in
+                qServerManager.generateQRCode(userId: qServerManager.userId, qard: qard).response { response in
                     print("Response: \(String(describing: response.response))")
                     if let data = response.data {
                         let qrImage = UIImage(data: data,scale:1.0)
