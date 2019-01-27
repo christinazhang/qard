@@ -103,6 +103,11 @@ class QServerManager {
         print("encodedURL", encodedUrl)
         return Alamofire.request(encodedUrl)
     }
+    
+    func deleteCard(userId: String, qardId: String) -> DataRequest {
+        let getUserCardURL: String = "https://qard.lib.id/qard@dev/deleteCard/?userId=\(userId)&cardId=\(qardId)"
+        return Alamofire.request(getUserCardURL)
+    }
 
     func generateQRCode(userId: String, qard: Qard) -> DataRequest {
         let getUserCardURL: String = "\(userId),\(qard.id ?? "")"

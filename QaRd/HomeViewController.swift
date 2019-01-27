@@ -173,6 +173,18 @@ class HomeViewController: UICollectionViewController, FormViewDelegate, QRCodeRe
         self.navigationController?.popViewController(animated: true)
     }
     
+    func onFormDelete(qard: Qard) {
+        QServerManager.shared().getUserCards(userId: QServerManager.shared().userId).responseJSON { response in
+            print(response)
+            let jsonDecoder = JSONDecoder()
+            if let data = response.data, let qards = try? jsonDecoder.decode([Qard].self, from: data) {
+                self.qards = qards
+            }
+            self.collectionView.reloadData()
+            self.navigationController?.popViewController(animated: true)
+        }
+    }
+    
     // MARK: - QRCodeReaderViewControllerDelegate
     
     func reader(_ reader: QRCodeReaderViewController, didScanResult result: QRCodeReaderResult) {

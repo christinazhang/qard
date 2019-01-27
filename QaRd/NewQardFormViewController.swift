@@ -13,7 +13,8 @@ import ColorPickerRow
 typealias Emoji = String
 
 protocol FormViewDelegate: class {
-    func onFormComplete(qard: Qard, isNewCard: Bool) 
+    func onFormComplete(qard: Qard, isNewCard: Bool)
+    func onFormDelete(qard: Qard)
 }
 
 class NewQardFormViewController: FormViewController, LinkFormDelegate {
@@ -28,6 +29,8 @@ class NewQardFormViewController: FormViewController, LinkFormDelegate {
     var qard: Qard = Qard()
     weak var delegate: FormViewDelegate?
     var linkSection = SelectableSection<ListCheckRow<String>>("Links", selectionType: .singleSelection(enableDeselection: true))
+    var deleteLabel: UILabel = UILabel()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,6 +55,17 @@ class NewQardFormViewController: FormViewController, LinkFormDelegate {
         self.edgesForExtendedLayout = []
         self.tableView.backgroundColor = .white
         
+        self.tableView.translatesAutoresizingMaskIntoConstraints = false
+        self.deleteLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.deleteLabel.text = "Delete QaRd"
+        self.deleteLabel.textColor = .red
+        self.deleteLabel.textAlignment = .center
+        self.deleteLabel.sizeToFit()
+        self.deleteLabel.isUserInteractionEnabled = true
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleDelete))
+        self.deleteLabel.addGestureRecognizer(tapGestureRecognizer)
+        
         
         form +++ Section("Core Qard")
             <<< TextRow(){ row in
@@ -59,11 +73,14 @@ class NewQardFormViewController: FormViewController, LinkFormDelegate {
                 row.placeholder = "e.g. Gaming, Business, Social"
                 row.value = qard.id ?? ""
                 row.tag = "qardId"
+                row.add(rule: RuleRequired())
+                row.validationOptions = .validatesOnChange
                 }.onChange { row in
                     self.qard.id = row.value ?? ""
                 }
+            
             <<< PushRow<Int>(){ row in
-                row.title = "Gradient"
+                row.title = "Color Scheme"
                 row.options = [1, 2, 3, 4, 5]
                 row.value = qard.gradient
                 row.tag = "gradient"
@@ -120,6 +137,21 @@ class NewQardFormViewController: FormViewController, LinkFormDelegate {
                 }
             }
         }
+        
+        self.deleteLabel.isHidden = self.isNewCard
+        self.view.addSubview(self.deleteLabel)
+        
+        NSLayoutConstraint.activate([
+          self.deleteLabel.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -30),
+          self.deleteLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+          self.deleteLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+          self.deleteLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+          
+          self.tableView.topAnchor.constraint(equalTo:self.view.topAnchor),
+          self.tableView.leadingAnchor.constraint(equalTo:self.view.leadingAnchor),
+          self.tableView.trailingAnchor.constraint(equalTo:self.view.trailingAnchor),
+          self.tableView.bottomAnchor.constraint(equalTo:self.deleteLabel.topAnchor),
+        ])
     }
     
     func onLinkComplete(link: Link) {
@@ -151,8 +183,17 @@ class NewQardFormViewController: FormViewController, LinkFormDelegate {
                 self.delegate?.onFormComplete(qard: self.qard, isNewCard: self.isNewCard)
             }
         }
+    }
+    
+    @objc func handleDelete() {
+        print("handle delete")
         
-
-        
+        if let id = self.qard.id {
+            print(id)
+            QServerManager.shared().deleteCard(userId: QServerManager.shared().userId, qardId: id).response { response in
+                print("deleting!", response)
+                self.delegate?.onFormDelete(qard: self.qard)
+            }
+        }
     }
 }
