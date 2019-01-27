@@ -11,6 +11,9 @@ import UIKit
 import Alamofire
 
 class QardCollectionViewCell: UICollectionViewCell {
+    
+    var qServerManager: QServerManager = QServerManager.shared()
+    
     var qard: Qard? {
         didSet {
             self.titleLabel.text = self.qard?.title
@@ -22,28 +25,18 @@ class QardCollectionViewCell: UICollectionViewCell {
             self.layer.insertSublayer(gradientLayer, at: 0)
             self.backgroundColor = self.qard?.color
             
-            
-            let QR: String = Constants.qrGeneratorURL
-            let allowedCharacterSet = (CharacterSet(charactersIn: "!*'();:@&=+$,/?%#[] ").inverted)
-
-            let qardServer: String = "https://qard.lib.id/qard@dev/getUserCard/?userId=wiji&cardId=\(qard?.id ?? "")"
-            let encodedURL = qardServer.addingPercentEncoding(withAllowedCharacters: allowedCharacterSet)
-            
-            // Yay for force unwraps~
-            let URL: String = QR + encodedURL!
-            
-            print(URL)
-
-            
-            Alamofire.request(URL).response { response in
-                print("Response: \(String(describing: response.response))")
-
-                if let data = response.data {
-                    let qrImage = UIImage(data: data,scale:1.0)
-                    self.qrImageViewBackground.backgroundColor = .white
-                    self.qrImageView.image = qrImage
+            if let qard = qard {
+                qServerManager.generateQRCode(userId: "wiji", qard: qard).response { response in
+                    print("Response: \(String(describing: response.response))")
+                    if let data = response.data {
+                        let qrImage = UIImage(data: data,scale:1.0)
+                        self.qrImageViewBackground.backgroundColor = .white
+                        self.qrImageView.image = qrImage
+                    }
                 }
             }
+
+
         }
     }
     

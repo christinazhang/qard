@@ -17,7 +17,7 @@ import QRCodeReader
 class HomeViewController: UICollectionViewController, FormViewDelegate, QRCodeReaderViewControllerDelegate {
 
     private let reuseIdentifier = "QardCollectionViewCell"
-    private var qards: [Qard] = [Qard(id: "card ID", gradient: [UIColor.purple.cgColor, UIColor.blue.cgColor], color: nil, isPrivate: false, title: "card title", subtitle: "this is a subtitle", links: []),]
+    private var qards: [Qard] = [Qard(id: "testQard", gradient: [UIColor.purple.cgColor, UIColor.blue.cgColor], color: nil, isPrivate: false, title: "card title", subtitle: "this is a subtitle", links: []),]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,7 +74,9 @@ class HomeViewController: UICollectionViewController, FormViewDelegate, QRCodeRe
         
         // Or by using the closure pattern
         readerVC.completionBlock = { (result: QRCodeReaderResult?) in
-            print(result)
+            if let result = result {
+                // Make api request to https
+            }
         }
         
         // Presents the readerVC as modal form sheet

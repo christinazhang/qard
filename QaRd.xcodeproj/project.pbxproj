@@ -10,6 +10,7 @@
 		4182CAFE21FD66E500FA8A9A /* NewQardFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4182CAFD21FD66E500FA8A9A /* NewQardFormViewController.swift */; };
 		4182CB0021FD716300FA8A9A /* Qard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4182CAFF21FD716300FA8A9A /* Qard.swift */; };
 		4182CB0221FD75F400FA8A9A /* NewLinkFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4182CB0121FD75F400FA8A9A /* NewLinkFormViewController.swift */; };
+		4182CB0421FDBE3900FA8A9A /* QServerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4182CB0321FDBE3900FA8A9A /* QServerManager.swift */; };
 		69CBB7DE2226B46E7980838D /* Pods_QaRdTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47A447926BB7777DD8560A82 /* Pods_QaRdTests.framework */; };
 		8623A97D650A63C79CC9FDFF /* Pods_QaRd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72E9D5D7B75C132F656F00C4 /* Pods_QaRd.framework */; };
 		CF1657CD21FD49C3005E9E26 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1657CC21FD49C3005E9E26 /* HomeViewController.swift */; };
@@ -50,6 +51,7 @@
 		4182CAFD21FD66E500FA8A9A /* NewQardFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewQardFormViewController.swift; sourceTree = "<group>"; };
 		4182CAFF21FD716300FA8A9A /* Qard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Qard.swift; sourceTree = "<group>"; };
 		4182CB0121FD75F400FA8A9A /* NewLinkFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewLinkFormViewController.swift; sourceTree = "<group>"; };
+		4182CB0321FDBE3900FA8A9A /* QServerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QServerManager.swift; sourceTree = "<group>"; };
 		47A447926BB7777DD8560A82 /* Pods_QaRdTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QaRdTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C9552674DD9848DE53D15ED /* Pods-QaRd.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QaRd.release.xcconfig"; path = "Pods/Target Support Files/Pods-QaRd/Pods-QaRd.release.xcconfig"; sourceTree = "<group>"; };
 		6B10510D2701B6BB7A6ECEBC /* Pods-QaRd.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QaRd.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QaRd/Pods-QaRd.debug.xcconfig"; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 				4182CB0121FD75F400FA8A9A /* NewLinkFormViewController.swift */,
 				CF1657F121FDA3A7005E9E26 /* FullScreenQardViewController.swift */,
 				CF1657F321FDAA0A005E9E26 /* QardLinkView.swift */,
+				4182CB0321FDBE3900FA8A9A /* QServerManager.swift */,
 			);
 			path = QaRd;
 			sourceTree = "<group>";
@@ -425,6 +428,7 @@
 				4182CB0221FD75F400FA8A9A /* NewLinkFormViewController.swift in Sources */,
 				CF28EB8B21FD3ECD00F0346D /* QardCollectionViewCell.swift in Sources */,
 				CF28EB8D21FD3F9F00F0346D /* Constants.swift in Sources */,
+				4182CB0421FDBE3900FA8A9A /* QServerManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
