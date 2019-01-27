@@ -1,0 +1,28 @@
+PODS:
+  - Alamofire (4.7.3)
+  - Eureka (4.3.0)
+  - FontAwesome.swift (1.4.6)
+  - Wallet (1.4.1)
+
+DEPENDENCIES:
+  - Alamofire
+  - Eureka
+  - FontAwesome.swift
+  - Wallet
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - Eureka
+    - FontAwesome.swift
+    - Wallet
+
+SPEC CHECKSUMS:
+  Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
+  Eureka: 6d711cb30ca333b4bc893110285a722ae3840114
+  FontAwesome.swift: 18fb500c0decc2bbfadf2ae16a936704ec2c49bd
+  Wallet: 9f2942aa81aacf627fee3a42c11acf97fbacbd5d
+
+PODFILE CHECKSUM: 1a4df433c8ec166f9658a24dc270ba662915969d
+
+COCOAPODS: 1.5.2

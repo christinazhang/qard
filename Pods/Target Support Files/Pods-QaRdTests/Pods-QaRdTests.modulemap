@@ -1,0 +1,6 @@
+framework module Pods_QaRdTests {
+  umbrella header "Pods-QaRdTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
