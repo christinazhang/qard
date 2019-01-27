@@ -106,7 +106,7 @@ class HomeViewController: UICollectionViewController, FormViewDelegate, QRCodeRe
                                 
                                 let links = linksDict?.map({ (category) -> Link in
                                     let username = category["username"] ?? "no username"
-                                    let url = category["url"] ?? "no url"
+                                    let url = category["URL"] ?? "no url"
                                     let message = category["message"] ?? "no message"
                                     return Link(url: url, username: username, message: message)
                                 }) ?? []

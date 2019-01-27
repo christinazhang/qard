@@ -13,7 +13,7 @@ import Alamofire
 class QServerManager {
     
     let QR: String = Constants.qrGeneratorURL
-    let userId: String = "testUser1"
+    let userId: String = "testUser2"
     let allowedCharacterSet = (CharacterSet(charactersIn: "!*'();:@&=+$,/?%#[]{} ").inverted)
     
     private static var sharedQServerManager: QServerManager = {
