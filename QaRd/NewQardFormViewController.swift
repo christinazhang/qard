@@ -68,21 +68,24 @@ class NewQardFormViewController: FormViewController, LinkFormDelegate {
 //            }
             <<< PushRow<Int>(){ row in
                 row.title = "Gradient"
-                row.options = [1, 2, 3, 4, 5, 6]
+                row.options = [1, 2, 3, 4, 5]
+                row.value = 1
+                row.tag = "gradient"
                 }.onPresent({ (from, to) in
                     to.selectableRowCellUpdate = { cell, row in
-                        
-                        cell.contentView.addSubview(swatches[0])
+                        let gradient = Constants.gradients[row.selectableValue! - 1]
+                        let gradientLayer = CAGradientLayer()
+                        gradientLayer.colors = gradient
+                        gradientLayer.frame = CGRect(x: 8, y: cell.bounds.midY - 12.5, width: 25, height: 25)
+                        gradientLayer.cornerRadius = 2
+                        gradientLayer.masksToBounds = true
+                        cell.layer.addSublayer(gradientLayer)
+//                        cell.addSubview(swatches[row.selectableValue!])
                     }
+                }).onChange({ row in
+                    let index = (row.value ?? 1) - 1
+                    self.qard.gradient = Constants.gradients[index]
                 })
-            <<< PushRow<[CGColor]>(){
-                $0.title = "Color"
-                $0.options = Constants.gradients
-                $0.value = Constants.gradients[0]
-                $0.tag = "color"
-                }.onChange {row in
-                    self.qard.gradient = row.value ?? Constants.gradients[0];
-            }
             <<< SwitchRow() { row in      // initializer
                 row.title = "Private"
                 row.tag = "private"
