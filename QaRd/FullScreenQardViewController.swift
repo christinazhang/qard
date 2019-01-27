@@ -78,11 +78,18 @@ class FullScreenQardViewController: UIViewController {
         gradientLayer.frame = self.view.bounds
         gradientLayer.colors = qard.gradient
         self.contentView.layer.insertSublayer(gradientLayer, at: 0)
-        self.contentView.backgroundColor = qard.color
+//        self.contentView.backgroundColor = qard.color
         
         qard.links.forEach { link in
             let linkView = QardLinkView(link: link)
             linkView.translatesAutoresizingMaskIntoConstraints = false
+            
+            Constants.iconMap.keys.forEach({ key in
+                if link.URL?.contains(key) ?? false {
+                    linkView.icon = Constants.iconMap[key]!
+                }
+            })
+            
             self.stackView.addArrangedSubview(linkView)
             
             NSLayoutConstraint.activate([

@@ -17,10 +17,11 @@ class QardLinkView: UIView {
     // oof a backgroundview so i can mask and still show an icon
     var backgroundView: UIView = UIView()
     var link: Link
-    var icon: FontAwesome = .plus { // ONLY CHANGE THIS TO BRANDS OR I WILL BE SAD
+    
+    var icon: Constants.IconInfo = (style: .solid, icon: .plus) {
         didSet {
-            self.iconLabel.font = UIFont.fontAwesome(ofSize: Constants.fontAwesomeIconSize, style: .brands)
-            self.iconLabel.text = String.fontAwesomeIcon(name: self.icon)
+            self.iconLabel.font = UIFont.fontAwesome(ofSize: Constants.fontAwesomeIconSize, style: self.icon.style)
+            self.iconLabel.text = String.fontAwesomeIcon(name: self.icon.icon)
         }
     }
     
@@ -41,8 +42,8 @@ class QardLinkView: UIView {
         self.messageLabel.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(self.messageLabel)
         
-        self.iconLabel.font = UIFont.fontAwesome(ofSize: Constants.fontAwesomeIconSize, style: .solid)
-        self.iconLabel.text = String.fontAwesomeIcon(name: self.icon)
+        self.iconLabel.font = UIFont.fontAwesome(ofSize: Constants.fontAwesomeIconSize, style: self.icon.style)
+        self.iconLabel.text = String.fontAwesomeIcon(name: self.icon.icon)
         self.iconLabel.textColor = .white
         self.iconLabel.sizeToFit()
         self.iconLabel.translatesAutoresizingMaskIntoConstraints = false

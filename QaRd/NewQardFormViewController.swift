@@ -29,19 +29,19 @@ class NewQardFormViewController: FormViewController, LinkFormDelegate {
         
         form +++ Section("Core Qard")
             <<< TextRow(){ row in
-                row.title = "Qard Id"
-                row.placeholder = "Enter text here"
+                row.title = "Qard ID"
+                row.placeholder = "e.g. Gaming, Business, Social"
                 row.tag = "qardId"
                 }.onChange { row in
                     self.qard.id = row.value ?? "";
             }
-            <<< PushRow<UIColor>(){
+            <<< PushRow<[CGColor]>(){
                 $0.title = "Color"
-                $0.options = [UIColor.blue, UIColor.red, UIColor.green, UIColor.orange, UIColor.yellow, UIColor.white]
-                $0.value = .blue
+                $0.options = Constants.gradients
+                $0.value = Constants.gradients[0]
                 $0.tag = "color"
                 }.onChange {row in
-                    self.qard.color = row.value ?? .blue;
+                    self.qard.gradient = row.value ?? Constants.gradients[0];
             }
             <<< SwitchRow() { row in      // initializer
                 row.title = "Private"
@@ -52,13 +52,13 @@ class NewQardFormViewController: FormViewController, LinkFormDelegate {
             +++ Section("Header")
             <<< TextRow() { row in
                 row.title = "Title"
-                row.placeholder = "Title of Qard"
+                row.placeholder = "Leroy Jenkins"
                 }.onChange {row in
                     self.qard.title = row.value ?? "";
             }
             <<< TextRow() { row in
                 row.title = "Subtitle"
-                row.placeholder = "Subtitle of Qard"
+                row.placeholder = "At least I got some chicken"
                 }.onChange {row in
                     self.qard.subtitle = row.value ?? "";
             }

@@ -17,7 +17,7 @@ import QRCodeReader
 class HomeViewController: UICollectionViewController, FormViewDelegate, QRCodeReaderViewControllerDelegate {
 
     private let reuseIdentifier = "QardCollectionViewCell"
-    private var qards: [Qard] = [Qard(id: "card ID", gradient: [UIColor.purple.cgColor, UIColor.blue.cgColor], color: nil, isPrivate: false, title: "card title", subtitle: "this is a subtitle", links: []),]
+    private var qards: [Qard] = [Qard(id: "card ID", gradient: Constants.gradients[2], isPrivate: false, title: "card title", subtitle: "this is a subtitle", links: []),]
     
     override func viewDidLoad() {
         super.viewDidLoad()
