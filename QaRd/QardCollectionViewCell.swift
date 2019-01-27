@@ -13,6 +13,7 @@ import FontAwesome_swift
 
 class QardCollectionViewCell: UICollectionViewCell {
     // Isaiah this is so bad omg
+    // ITS FINE HACKATHON SPIRIT ALSO WE HAVE THIS IN CERTIF AND REAL PRODUCT CODE
     var qServerManager: QServerManager = QServerManager.shared()
     
     var qard: Qard? {
@@ -27,7 +28,7 @@ class QardCollectionViewCell: UICollectionViewCell {
 //            self.backgroundColor = self.qard?.color
             
             if let qard = qard {
-                qServerManager.generateQRCode(userId: "wiji", qard: qard).response { response in
+                qServerManager.generateQRCode(userId: qServerManager.userId, qard: qard).response { response in
                     print("Response: \(String(describing: response.response))")
                     if let data = response.data {
                         let qrImage = UIImage(data: data,scale:1.0)

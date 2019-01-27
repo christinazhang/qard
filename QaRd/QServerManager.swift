@@ -104,7 +104,7 @@ class QServerManager {
         return Alamofire.request(encodedUrl)
     }
 
-    func generateQRCode(userId: String = "wiji", qard: Qard) -> DataRequest {
+    func generateQRCode(userId: String, qard: Qard) -> DataRequest {
         let getUserCardURL: String = "\(userId),\(qard.id ?? "")"
         let encodedURL = getUserCardURL.addingPercentEncoding(withAllowedCharacters: allowedCharacterSet)
         
