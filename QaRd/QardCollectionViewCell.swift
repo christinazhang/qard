@@ -23,7 +23,7 @@ class QardCollectionViewCell: UICollectionViewCell {
             gradientLayer.frame = self.bounds
             gradientLayer.colors = self.qard?.gradient
             self.layer.insertSublayer(gradientLayer, at: 0)
-            self.backgroundColor = self.qard?.color
+//            self.backgroundColor = self.qard?.color
             
             if let qard = qard {
                 qServerManager.generateQRCode(userId: "wiji", qard: qard).response { response in

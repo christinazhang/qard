@@ -31,7 +31,7 @@ class QServerManager {
         return sharedQServerManager
     }
     
-    func createUser(userId: String){
+    func createUser(userId: String) -> DataRequest{
         
         
         let getSavedCardsURL: String = "https://qard.lib.id/qard@dev/createUser/?userId=\(userId)"

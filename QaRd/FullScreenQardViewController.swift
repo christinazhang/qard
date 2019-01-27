@@ -65,7 +65,6 @@ class FullScreenQardViewController: UIViewController {
             self.subtitleLabel.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -16),
             
             self.stackView.topAnchor.constraint(equalTo: self.subtitleLabel.bottomAnchor, constant: 32),
-//            self.stackView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -80),
             self.stackView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 16),
             self.stackView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -16),
         ])
@@ -79,11 +78,18 @@ class FullScreenQardViewController: UIViewController {
         gradientLayer.frame = self.view.bounds
         gradientLayer.colors = qard.gradient
         self.contentView.layer.insertSublayer(gradientLayer, at: 0)
-        self.contentView.backgroundColor = qard.color
+//        self.contentView.backgroundColor = qard.color
         
         qard.links.forEach { link in
             let linkView = QardLinkView(link: link)
             linkView.translatesAutoresizingMaskIntoConstraints = false
+            
+            Constants.iconMap.keys.forEach({ key in
+                if link.URL?.contains(key) ?? false {
+                    linkView.icon = Constants.iconMap[key]!
+                }
+            })
+            
             self.stackView.addArrangedSubview(linkView)
             
             NSLayoutConstraint.activate([
@@ -110,6 +116,5 @@ class FullScreenQardViewController: UIViewController {
         self.initStackView()
         self.initLabels()
         self.setConstraints()
-        self.setQard(Qard(id: "ID", gradient: [UIColor.purple.cgColor, UIColor.magenta.cgColor], color: nil, isPrivate: nil, title: "Hello", subtitle: "Subtitle", links: [Link(url: "test", username: "Test", message: "Message")]))
     }
 }
