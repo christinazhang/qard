@@ -62,10 +62,6 @@ class NewQardFormViewController: FormViewController, LinkFormDelegate {
                 }.onChange { row in
                     self.qard.id = row.value ?? "";
                 }
-            //  Custom color palette example
-//            <<< GradientPickerRow() { row in
-//                row.title = "Gradient"
-//            }
             <<< PushRow<Int>(){ row in
                 row.title = "Gradient"
                 row.options = [1, 2, 3, 4, 5]
@@ -80,7 +76,6 @@ class NewQardFormViewController: FormViewController, LinkFormDelegate {
                         gradientLayer.cornerRadius = 2
                         gradientLayer.masksToBounds = true
                         cell.layer.addSublayer(gradientLayer)
-//                        cell.addSubview(swatches[row.selectableValue!])
                     }
                 }).onChange({ row in
                     let index = (row.value ?? 1) - 1
@@ -149,7 +144,12 @@ class NewQardFormViewController: FormViewController, LinkFormDelegate {
     }
     
     @objc func saveQard() {
-        self.delegate?.onFormComplete(qard: self.qard)
+        let userId = QServerManager.shared().userId
+        
+        QServerManager.shared().createCard(userId: userId, qard: self.qard).response { response in
+            self.delegate?.onFormComplete(qard: self.qard)
+        }
+        
     }
 }
 

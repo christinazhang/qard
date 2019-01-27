@@ -104,7 +104,7 @@ class FullScreenQardViewController: UIViewController {
         let backBarButtonItem = UIBarButtonItem(title: String.fontAwesomeIcon(name: .arrowLeft),
                                                   style: .plain,
                                                   target: self,
-                                                  action: nil)
+                                                  action: #selector(backAction))
         backBarButtonItem.setTitleTextAttributes(attributes, for: .normal)
         backBarButtonItem.setTitleTextAttributes(attributes, for: .selected)
         backBarButtonItem.tintColor = .black
@@ -115,5 +115,9 @@ class FullScreenQardViewController: UIViewController {
         self.initStackView()
         self.initLabels()
         self.setConstraints()
+    }
+    
+    @objc func backAction() {
+        self.navigationController?.popViewController(animated: true)
     }
 }

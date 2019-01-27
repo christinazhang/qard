@@ -13,6 +13,7 @@ import Alamofire
 class QServerManager {
     
     let QR: String = Constants.qrGeneratorURL
+    let userId: String = "wiji"
     let allowedCharacterSet = (CharacterSet(charactersIn: "!*'();:@&=+$,/?%#[]{} ").inverted)
     
     private static var sharedQServerManager: QServerManager = {
@@ -90,7 +91,7 @@ class QServerManager {
         return Alamofire.request(encodedURL)
     }
 
-    func generateQRCode(userId: String, qard: Qard) -> DataRequest {
+    func generateQRCode(userId: String = "wiji", qard: Qard) -> DataRequest {
         let getUserCardURL: String = "\(userId),\(qard.id ?? "")"
         let encodedURL = getUserCardURL.addingPercentEncoding(withAllowedCharacters: allowedCharacterSet)
         

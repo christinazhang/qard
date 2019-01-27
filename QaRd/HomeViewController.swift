@@ -81,13 +81,13 @@ class HomeViewController: UICollectionViewController, FormViewDelegate, QRCodeRe
                     print (stringDic)
                     
                     if let jsonString = stringDic {
-                        let cardId = (jsonString["cardId"])
-                        let title = (jsonString["title"])
-                        let subtitle = (jsonString["subtitle"])
-                        
+                        let cardId = jsonString["cardId"] ?? ""
+                        let title = stringDic?["title"] ?? ""
+                        let subtitle = jsonString["subtitle"] ?? ""
+                        let links = jsonString["links"] ?? []
                         
                         let vc = FullScreenQardViewController()
-                        let qard =  Qard(id: cardId as? String, gradient: Constants.gradients[0], isPrivate: true, title: "temp", subtitle: "tesmp", links: [])
+                        let qard =  Qard(id: cardId as? String, gradient: Constants.gradients[0], isPrivate: true, title: title as? String, subtitle: subtitle as? String, links: links as! [Link])
                         vc.setQard(qard)
                         self.navigationController?.pushViewController(vc, animated: true)
                     }
