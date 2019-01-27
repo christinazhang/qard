@@ -18,7 +18,6 @@
 		CF28EB5D21FD37EE00F0346D /* RootNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF28EB5C21FD37EE00F0346D /* RootNavigationViewController.swift */; };
 		CF28EB6021FD37EE00F0346D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF28EB5E21FD37EE00F0346D /* Main.storyboard */; };
 		CF28EB6221FD37F400F0346D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF28EB6121FD37F400F0346D /* Assets.xcassets */; };
-		CF28EB6521FD37F400F0346D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF28EB6321FD37F400F0346D /* LaunchScreen.storyboard */; };
 		CF28EB7021FD37F500F0346D /* QaRdTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF28EB6F21FD37F500F0346D /* QaRdTests.swift */; };
 		CF28EB7B21FD37F500F0346D /* QaRdUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF28EB7A21FD37F500F0346D /* QaRdUITests.swift */; };
 		CF28EB8B21FD3ECD00F0346D /* QardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF28EB8A21FD3ECD00F0346D /* QardCollectionViewCell.swift */; };
@@ -62,7 +61,6 @@
 		CF28EB5C21FD37EE00F0346D /* RootNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigationViewController.swift; sourceTree = "<group>"; };
 		CF28EB5F21FD37EE00F0346D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CF28EB6121FD37F400F0346D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		CF28EB6421FD37F400F0346D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CF28EB6621FD37F400F0346D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CF28EB6B21FD37F500F0346D /* QaRdTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QaRdTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF28EB6F21FD37F500F0346D /* QaRdTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QaRdTests.swift; sourceTree = "<group>"; };
@@ -164,7 +162,6 @@
 				CF28EB5C21FD37EE00F0346D /* RootNavigationViewController.swift */,
 				CF28EB5E21FD37EE00F0346D /* Main.storyboard */,
 				CF28EB6121FD37F400F0346D /* Assets.xcassets */,
-				CF28EB6321FD37F400F0346D /* LaunchScreen.storyboard */,
 				CF28EB6621FD37F400F0346D /* Info.plist */,
 				CF28EB8A21FD3ECD00F0346D /* QardCollectionViewCell.swift */,
 				CF28EB8C21FD3F9F00F0346D /* Constants.swift */,
@@ -302,7 +299,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CF28EB6521FD37F400F0346D /* LaunchScreen.storyboard in Resources */,
 				CF28EB6221FD37F400F0346D /* Assets.xcassets in Resources */,
 				CF28EB6021FD37EE00F0346D /* Main.storyboard in Resources */,
 				CF1657EA21FD57AC005E9E26 /* BreeSerif-Regular.ttf in Resources */,
@@ -462,14 +458,6 @@
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		CF28EB6321FD37F400F0346D /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CF28EB6421FD37F400F0346D /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -594,6 +582,7 @@
 			baseConfigurationReference = 6B10510D2701B6BB7A6ECEBC /* Pods-QaRd.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZNZ5A6348C;
 				INFOPLIST_FILE = QaRd/Info.plist;
@@ -614,6 +603,7 @@
 			baseConfigurationReference = 4C9552674DD9848DE53D15ED /* Pods-QaRd.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZNZ5A6348C;
 				INFOPLIST_FILE = QaRd/Info.plist;
