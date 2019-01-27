@@ -202,6 +202,7 @@ extension HomeViewController {
             return UICollectionViewCell()
         }
         cell.qard = self.qards[indexPath.row]
+        cell.titleLabel.text = self.qards[indexPath.row].id
         cell.layer.masksToBounds = false;
         cell.layer.shadowOffset = CGSize(width: 0, height: 2);
         cell.layer.shadowRadius = 5;

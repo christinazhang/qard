@@ -17,6 +17,7 @@
 		CF1657EA21FD57AC005E9E26 /* BreeSerif-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF1657D121FD50AB005E9E26 /* BreeSerif-Regular.ttf */; };
 		CF1657F221FDA3A7005E9E26 /* FullScreenQardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1657F121FDA3A7005E9E26 /* FullScreenQardViewController.swift */; };
 		CF1657F421FDAA0A005E9E26 /* QardLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1657F321FDAA0A005E9E26 /* QardLinkView.swift */; };
+		CF1657FA21FE2604005E9E26 /* QuickAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1657F921FE2604005E9E26 /* QuickAddView.swift */; };
 		CF28EB5B21FD37EE00F0346D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF28EB5A21FD37EE00F0346D /* AppDelegate.swift */; };
 		CF28EB5D21FD37EE00F0346D /* RootNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF28EB5C21FD37EE00F0346D /* RootNavigationViewController.swift */; };
 		CF28EB6021FD37EE00F0346D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF28EB5E21FD37EE00F0346D /* Main.storyboard */; };
@@ -62,6 +63,7 @@
 		CF1657D121FD50AB005E9E26 /* BreeSerif-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BreeSerif-Regular.ttf"; sourceTree = "<group>"; };
 		CF1657F121FDA3A7005E9E26 /* FullScreenQardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenQardViewController.swift; sourceTree = "<group>"; };
 		CF1657F321FDAA0A005E9E26 /* QardLinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QardLinkView.swift; sourceTree = "<group>"; };
+		CF1657F921FE2604005E9E26 /* QuickAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickAddView.swift; sourceTree = "<group>"; };
 		CF28EB5721FD37EE00F0346D /* QaRd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QaRd.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF28EB5A21FD37EE00F0346D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CF28EB5C21FD37EE00F0346D /* RootNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigationViewController.swift; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 				CF1657F121FDA3A7005E9E26 /* FullScreenQardViewController.swift */,
 				CF1657F321FDAA0A005E9E26 /* QardLinkView.swift */,
 				4182CB0321FDBE3900FA8A9A /* QServerManager.swift */,
+				CF1657F921FE2604005E9E26 /* QuickAddView.swift */,
 			);
 			path = QaRd;
 			sourceTree = "<group>";
@@ -432,6 +435,7 @@
 				4182CB0221FD75F400FA8A9A /* NewLinkFormViewController.swift in Sources */,
 				CF28EB8B21FD3ECD00F0346D /* QardCollectionViewCell.swift in Sources */,
 				CF28EB8D21FD3F9F00F0346D /* Constants.swift in Sources */,
+				CF1657FA21FE2604005E9E26 /* QuickAddView.swift in Sources */,
 				4182CB0421FDBE3900FA8A9A /* QServerManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
