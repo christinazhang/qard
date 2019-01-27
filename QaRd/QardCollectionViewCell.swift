@@ -22,7 +22,7 @@ class QardCollectionViewCell: UICollectionViewCell {
             
             let gradientLayer = CAGradientLayer()
             gradientLayer.frame = self.bounds
-            gradientLayer.colors = self.qard?.gradient
+            gradientLayer.colors = Constants.gradients[self.qard?.gradient ?? 0]
             self.layer.insertSublayer(gradientLayer, at: 0)
 //            self.backgroundColor = self.qard?.color
             

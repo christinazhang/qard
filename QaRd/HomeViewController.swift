@@ -15,18 +15,26 @@ import AVFoundation
 import QRCodeReader
 
 class HomeViewController: UICollectionViewController, FormViewDelegate, QRCodeReaderViewControllerDelegate {
-
-    private let reuseIdentifier = "QardCollectionViewCell"
-
-    private var qards: [Qard] = [Qard(id: "testQard", gradient: Constants.gradients[2], isPrivate: false, title: "card title", subtitle: "this is a subtitle", links: []),]
     
+    private let reuseIdentifier = "QardCollectionViewCell"
+    
+//    private var qards: [Qard] = [Qard(id: "testQard", gradient: 2, isPrivate: false, title: "card title", subtitle: "this is a subtitle", links: []),]
+    private var qards: [Qard] = []
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        QServerManager.shared().getUserCards(userId: QServerManager.shared().userId).responseJSON { response in
+            print(response)
+            let jsonDecoder = JSONDecoder()
+            let qards = try? jsonDecoder.decode([Qard].self, from: response.data!)
+            self.qards = qards!
+            self.collectionView.reloadData()
+        }
         
         // Set "New QaRd" button
         let plusButton = UIButton(type: .custom)
         plusButton.addTarget(self, action: #selector(launchNewQardForm), for: .touchUpInside)
-
+        
         let plusIconImage = UIImage.fontAwesomeIcon(name: .plus, style: .solid, textColor: .black, size: CGSize(width: Constants.fontAwesomeIconSize, height: Constants.fontAwesomeIconSize))
         let plusAttributes: [NSAttributedString.Key : Any] = [.font : UIFont(name: "Avenir-Heavy", size: 16)!]
         let plusAttributedString = NSAttributedString(string: "New QaRd", attributes: plusAttributes)
@@ -52,10 +60,10 @@ class HomeViewController: UICollectionViewController, FormViewDelegate, QRCodeRe
         layout.itemSize = CGSize(width: self.collectionView.frame.width - 64, height: 320)
         layout.sectionInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
         layout.minimumLineSpacing = 20
-
+        
         self.collectionView.collectionViewLayout = layout
         self.collectionView.register(QardCollectionViewCell.self, forCellWithReuseIdentifier: self.reuseIdentifier)
-
+        
     }
     
     // Good practice: create the reader lazily to avoid cpu overload during the
@@ -95,7 +103,7 @@ class HomeViewController: UICollectionViewController, FormViewDelegate, QRCodeRe
                         }) ?? []
                         
                         let vc = FullScreenQardViewController()
-                        let qard =  Qard(id: cardId, gradient: Constants.gradients[gradientIndex], isPrivate: true, title: title, subtitle: subtitle, links: links)
+                        let qard =  Qard(id: cardId, gradient: gradientIndex, isPrivate: true, title: title, subtitle: subtitle, links: links)
                         vc.setQard(qard)
                         self.navigationController?.pushViewController(vc, animated: true)
                     }
@@ -114,7 +122,7 @@ class HomeViewController: UICollectionViewController, FormViewDelegate, QRCodeRe
                 let userId = stuff[0].replacingOccurrences(of: "[", with: "", options: NSString.CompareOptions.literal)
                 let qardId = stuff[1].replacingOccurrences(of: "]", with: "", options: NSString.CompareOptions.literal)
                 print(qardId)
-            // PUT IT BACK LATER
+                // PUT IT BACK LATER
             }
         }
         

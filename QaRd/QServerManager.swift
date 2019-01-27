@@ -13,7 +13,7 @@ import Alamofire
 class QServerManager {
     
     let QR: String = Constants.qrGeneratorURL
-    let userId: String = "wiji"
+    let userId: String = "testUser1"
     let allowedCharacterSet = (CharacterSet(charactersIn: "!*'();:@&=+$,/?%#[]{} ").inverted)
     
     private static var sharedQServerManager: QServerManager = {
@@ -29,7 +29,7 @@ class QServerManager {
     
     func asString(jsonDictionary: [String : Any]) -> String {
         do {
-            let data = try JSONSerialization.data(withJSONObject: jsonDictionary, options: .prettyPrinted)
+            let data = try JSONSerialization.data(withJSONObject: jsonDictionary, options: .sortedKeys)
             return String(data: data, encoding: String.Encoding.utf8) ?? ""
         } catch {
             return ""
@@ -46,12 +46,18 @@ class QServerManager {
     
     func createCard(userId: String, qard: Qard) -> DataRequest {
         
-        let jsonString = self.asString(jsonDictionary: qard.toJSON())
-    
-        let getSavedCardsURL: String = " https://qard.lib.id/qard@dev/createCard/?userId=\(userId)&cardId=\(qard.id ?? "")&cardData=\(jsonString)"
-        let encodedURL = getSavedCardsURL.addingPercentEncoding(withAllowedCharacters: allowedCharacterSet)!
+        let jsonEncoder = JSONEncoder()
+        let jsonData = try! jsonEncoder.encode(qard)
+        let jsonString = String(data: jsonData, encoding: .utf8)
         
-        return Alamofire.request(encodedURL)
+    
+        let getSavedCardsURL: String = "https://qard.lib.id/qard@dev/createCard/?userId=\(userId)&cardId=\(qard.id ?? "")&cardData=\(jsonString ?? "")"
+        
+        let encodedUrl = getSavedCardsURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+
+        print("encodedURL", encodedUrl)
+
+        return Alamofire.request(encodedUrl)
     }
     
     func getSavedCards(userId: String) -> DataRequest {
@@ -63,20 +69,22 @@ class QServerManager {
     
     func getUserCard(userId: String, qardId: String) -> DataRequest {
         let getUserCardURL: String = "https://qard.lib.id/qard@dev/getUserCard/?userId=\(userId)&cardId=\(qardId)"
-        print("IMAWOIFJALFHEWLFA", getUserCardURL)
+        
         return Alamofire.request(getUserCardURL)
     }
     
     func getUserCards(userId: String) -> DataRequest {
         let userCardsURL: String =  "https://qard.lib.id/qard@dev/getUserCards/?userId=\(userId)"
-        let encodedURL = userCardsURL.addingPercentEncoding(withAllowedCharacters: allowedCharacterSet)!
+        let encodedURL = userCardsURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        
+        print("encodedURL", encodedURL)
         
         return Alamofire.request(encodedURL)
     }
     
     func saveCard(userId: String, otherUserId: String, qard: Qard) -> DataRequest {
         let saveCardURL: String =  "https://qard.lib.id/qard@dev/saveCard/?userId=\(userId)&otherUserId=\(otherUserId)&cardId=\(qard.id ?? "")"
-        let encodedURL = saveCardURL.addingPercentEncoding(withAllowedCharacters: allowedCharacterSet)!
+        let encodedURL = saveCardURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         
         return Alamofire.request(encodedURL)
     }
@@ -98,6 +106,18 @@ class QServerManager {
         // Yay for force unwraps~
         let URL: String = self.QR + encodedURL!
         return Alamofire.request(URL)
+    }
+    
+    public struct MyCustomEncoding: ParameterEncoding {
+        
+        public func encode(_ urlRequest: URLRequestConvertible, with parameters: Parameters?) throws -> URLRequest {
+            
+            let urlRequest = try urlRequest.asURLRequest()
+            
+            guard parameters != nil else { return urlRequest }
+            
+            return urlRequest
+        }
     }
 
 }

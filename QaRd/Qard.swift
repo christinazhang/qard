@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class Link: Equatable {
+class Link: Equatable, Codable {
     static func == (lhs: Link, rhs: Link) -> Bool {
         return (lhs.message == rhs.message && lhs.URL == rhs.URL && lhs.username == rhs.username)
     }
@@ -27,11 +27,11 @@ class Link: Equatable {
 }
 
 
-class Qard {
+class Qard: Codable {
     var id: String?
-    var gradient: [CGColor] = []
+    var gradient: Int = 0
     //    var color: UIColor?
-    var isPrivate: Bool?
+    var isPrivate: Bool = true
     
     var title: String?
     var subtitle: String?
@@ -39,7 +39,7 @@ class Qard {
     var links: [Link] = []
     
     init(id: String?,
-         gradient: [CGColor],
+         gradient: Int,
          //        color: UIColor?,
         isPrivate: Bool?,
         title: String?,
@@ -54,7 +54,7 @@ class Qard {
     }
     
     convenience init() {
-        self.init(id: nil, gradient: [], isPrivate: nil, title: nil, subtitle: nil, links: [])
+        self.init(id: nil, gradient: 0, isPrivate: nil, title: nil, subtitle: nil, links: [])
     }
     
     func toJSON() -> [String: Any] {

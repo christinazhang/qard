@@ -52,7 +52,6 @@ class NewQardFormViewController: FormViewController, LinkFormDelegate {
         self.edgesForExtendedLayout = []
         self.tableView.backgroundColor = .white
         
-        qard.links = [Link(url: "test", username: "fsafda", message: "dsfsd"), Link(url: "test2", username: "fsaf3333da", message: "444dsfsd")]
         
         form +++ Section("Core Qard")
             <<< TextRow(){ row in
@@ -66,9 +65,7 @@ class NewQardFormViewController: FormViewController, LinkFormDelegate {
             <<< PushRow<Int>(){ row in
                 row.title = "Gradient"
                 row.options = [1, 2, 3, 4, 5]
-                row.value = (Constants.gradients.enumerated().first(where: { (index, gradient) -> Bool in
-                    gradient.first == qard.gradient.first
-                })?.offset ?? 0) + 1
+                row.value = qard.gradient ?? 0
                 row.tag = "gradient"
                 }.onPresent({ (from, to) in
                     to.selectableRowCellUpdate = { cell, row in
@@ -82,15 +79,8 @@ class NewQardFormViewController: FormViewController, LinkFormDelegate {
                     }
                 }).onChange({ row in
                     let index = (row.value ?? 1) - 1
-                    self.qard.gradient = Constants.gradients[index]
+                    self.qard.gradient = index
                 })
-            <<< SwitchRow() { row in      // initializer
-                row.title = "Private"
-                row.tag = "private"
-                row.value = qard.isPrivate ?? true
-                }.onChange { row in
-                    self.qard.isPrivate = row.value ?? true;
-            }
             +++ Section("Header")
             <<< TextRow() { row in
                 row.title = "Title"
@@ -152,8 +142,8 @@ class NewQardFormViewController: FormViewController, LinkFormDelegate {
     @objc func saveQard() {
         let userId = QServerManager.shared().userId
         
-        QServerManager.shared().createCard(userId: userId, qard: self.qard).response { response in
-            self.delegate?.onFormComplete(qard: self.qard, isNewCard: self.isNewCard)
+        QServerManager.shared().createCard(userId: userId, qard: self.qard).responseJSON{ response in
+            self.delegate?.onFormComplete(qard: self.qard, isNewCard: true)
         }
         
     }
