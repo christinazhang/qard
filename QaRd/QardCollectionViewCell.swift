@@ -9,9 +9,10 @@
 import Foundation
 import UIKit
 import Alamofire
+import FontAwesome_swift
 
 class QardCollectionViewCell: UICollectionViewCell {
-    
+    // Isaiah this is so bad omg
     var qServerManager: QServerManager = QServerManager.shared()
     
     var qard: Qard? {
@@ -39,12 +40,14 @@ class QardCollectionViewCell: UICollectionViewCell {
 
         }
     }
-    
+    var editIconLabel: UILabel = UILabel()
     var titleLabel: UILabel = UILabel()
     var subtitleLabel: UILabel = UILabel()
     var qrImageView: UIImageView = UIImageView()
     // It's a hackathon i'm gonna make this a uiview
     var qrImageViewBackground: UIView = UIView()
+    
+    weak var delegate: HomeViewController?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -66,12 +69,22 @@ class QardCollectionViewCell: UICollectionViewCell {
         self.addSubview(self.titleLabel)
         self.titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
-
         self.subtitleLabel.font = UIFont(name: "Avenir-Book", size: 16)
         self.subtitleLabel.textColor = .white
         self.subtitleLabel.textAlignment = .center
         self.addSubview(self.subtitleLabel)
         self.subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.editIconLabel.font = UIFont.fontAwesome(ofSize: Constants.fontAwesomeIconSize, style: .solid)
+        self.editIconLabel.textColor = .white
+        self.editIconLabel.text = String.fontAwesomeIcon(name: .edit)
+        self.editIconLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(self.editIconLabel)
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTapEdit(_:)))
+        tapGestureRecognizer.numberOfTapsRequired = 1
+        self.editIconLabel.addGestureRecognizer(tapGestureRecognizer)
+        self.editIconLabel.isUserInteractionEnabled = true
     }
     
     private func initQRImageView() {
@@ -102,7 +115,15 @@ class QardCollectionViewCell: UICollectionViewCell {
             self.qrImageView.widthAnchor.constraint(equalToConstant: 135),
             self.qrImageView.heightAnchor.constraint(equalToConstant: 135),
             self.qrImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            
+            self.editIconLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
+            self.editIconLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16)
         ])
     }
     
+    @objc func handleTapEdit(_ sender: UITapGestureRecognizer) {
+        if let qard = self.qard {
+            self.delegate?.qardDidPressEdit(qard)
+        }
+    }
 }

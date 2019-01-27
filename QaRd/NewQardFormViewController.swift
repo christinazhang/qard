@@ -13,11 +13,18 @@ import ColorPickerRow
 typealias Emoji = String
 
 protocol FormViewDelegate: class {
-    func onFormComplete(qard: Qard) 
+    func onFormComplete(qard: Qard, isNewCard: Bool) 
 }
 
 class NewQardFormViewController: FormViewController, LinkFormDelegate {
-    
+    var titleLabelText: String = "New QaRd" {
+        didSet {
+            self.titleLabel.text = self.titleLabelText
+            self.titleLabel.sizeToFit()
+        }
+    }
+    var isNewCard: Bool = true // AKA "Is editing... but reverse"
+    var titleLabel: UILabel = UILabel()
     var qard: Qard = Qard()
     weak var delegate: FormViewDelegate?
     var linkSection = SelectableSection<ListCheckRow<String>>("Links", selectionType: .singleSelection(enableDeselection: true))
@@ -36,10 +43,9 @@ class NewQardFormViewController: FormViewController, LinkFormDelegate {
         checkMarkBarButtonItem.tintColor = .black
         self.navigationItem.rightBarButtonItem = checkMarkBarButtonItem
         
-        let titleLabel = UILabel()
-        titleLabel.font = UIFont(name: "BreeSerif-Regular", size: 28)
-        titleLabel.text = "New QaRd"
-        titleLabel.sizeToFit()
+        
+        self.titleLabel.font = UIFont(name: "BreeSerif-Regular", size: 28)
+        self.titleLabel.text = self.titleLabelText
         self.navigationItem.titleView = titleLabel
         self.navigationItem.title = " "
         
@@ -48,28 +54,21 @@ class NewQardFormViewController: FormViewController, LinkFormDelegate {
         
         qard.links = [Link(url: "test", username: "fsafda", message: "dsfsd"), Link(url: "test2", username: "fsaf3333da", message: "444dsfsd")]
         
-        let swatches = Constants.gradients.map { (gradient) -> GradientSwatchView in
-            let gradientSwatchView = GradientSwatchView()
-            gradientSwatchView.gradient = gradient
-            return gradientSwatchView
-        }
-        
         form +++ Section("Core Qard")
             <<< TextRow(){ row in
                 row.title = "QaRd ID"
                 row.placeholder = "e.g. Gaming, Business, Social"
+                row.value = qard.id ?? ""
                 row.tag = "qardId"
                 }.onChange { row in
-                    self.qard.id = row.value ?? "";
+                    self.qard.id = row.value ?? ""
                 }
-            //  Custom color palette example
-//            <<< GradientPickerRow() { row in
-//                row.title = "Gradient"
-//            }
             <<< PushRow<Int>(){ row in
                 row.title = "Gradient"
                 row.options = [1, 2, 3, 4, 5]
-                row.value = 1
+                row.value = (Constants.gradients.enumerated().first(where: { (index, gradient) -> Bool in
+                    gradient.first == qard.gradient.first
+                })?.offset ?? 0) + 1
                 row.tag = "gradient"
                 }.onPresent({ (from, to) in
                     to.selectableRowCellUpdate = { cell, row in
@@ -89,6 +88,7 @@ class NewQardFormViewController: FormViewController, LinkFormDelegate {
             <<< SwitchRow() { row in      // initializer
                 row.title = "Private"
                 row.tag = "private"
+                row.value = qard.isPrivate ?? true
                 }.onChange { row in
                     self.qard.isPrivate = row.value ?? true;
             }
@@ -96,12 +96,14 @@ class NewQardFormViewController: FormViewController, LinkFormDelegate {
             <<< TextRow() { row in
                 row.title = "Title"
                 row.placeholder = "Leeroy Jenkins"
+                row.value = qard.title ?? ""
                 }.onChange {row in
                     self.qard.title = row.value ?? "";
             }
             <<< TextRow() { row in
                 row.title = "Subtitle"
                 row.placeholder = "At least I got some chicken"
+                row.value = qard.subtitle ?? ""
                 }.onChange {row in
                     self.qard.subtitle = row.value ?? "";
             }
@@ -149,84 +151,6 @@ class NewQardFormViewController: FormViewController, LinkFormDelegate {
     }
     
     @objc func saveQard() {
-        self.delegate?.onFormComplete(qard: self.qard)
+        self.delegate?.onFormComplete(qard: self.qard, isNewCard: self.isNewCard)
     }
 }
-
-public final class GradientPickerCell: Cell<[CGColor]>, CellType {
-    public var titleLabel: UILabel = UILabel()
-    public var selectedSwatchView: GradientSwatchView = GradientSwatchView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
-    
-    public override func setup() {
-        super.setup()
-        
-        self.selectionStyle = .none
-        self.contentView.addSubview(self.titleLabel)
-        self.contentView.addSubview(self.selectedSwatchView)
-        self.selectedSwatchView.gradient = Constants.gradients[4]
-    }
-    
-}
-
-public class GradientSwatchView: UIView {
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        self.layer.cornerRadius = 2
-        self.layer.masksToBounds = true
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-    
-    public var gradient: [CGColor]? {
-        didSet {
-            setNeedsDisplay()
-        }
-    }
-    
-    override public func draw(_ rect: CGRect) {
-        if let gradient = self.gradient {
-            let gradientLayer = CAGradientLayer()
-            gradientLayer.colors = gradient
-            gradientLayer.frame = self.bounds
-            self.layer.addSublayer(gradientLayer)
-        }
-    }
-    
-}
-
-
-//public final class GradientPickerRow: Row<GradientPickerCell>, RowType {
-//    required public init(tag: String?) {
-//        super.init(tag: tag)
-//    }
-//}
-
-public final class GradientPickerRow : Row<PushSelectorCell<GradientSwatchView>>, RowType {
-    public required init(tag: String?) {
-        super.init(tag: tag)
-//        displayValueFor = {
-//            guard let location = $0 else { return "" }
-//            let fmt = NumberFormatter()
-//            fmt.maximumFractionDigits = 4
-//            fmt.minimumFractionDigits = 4
-//            let latitude = fmt.string(from: NSNumber(value: location.coordinate.latitude))!
-//            let longitude = fmt.string(from: NSNumber(value: location.coordinate.longitude))!
-//            return  "\(latitude), \(longitude)"
-//        }
-    }
-}
-    
-//    override public func customDidSelect() {
-//        super.customDidSelect()
-//        guard !isDisabled else { return }
-//
-//        let vc = MapViewController() { _ in }
-//        vc.row = self
-//        cell.formViewController()?.navigationController?.pushViewController(vc, animated: true)
-//        vc.onDismissCallback = { _ in
-//            vc.navigationController?.popViewController(animated: true)
-//        }
-//    }
-//}
