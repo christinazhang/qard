@@ -78,7 +78,6 @@ class FullScreenQardViewController: UIViewController {
         gradientLayer.frame = self.view.bounds
         gradientLayer.colors = qard.gradient
         self.contentView.layer.insertSublayer(gradientLayer, at: 0)
-//        self.contentView.backgroundColor = qard.color
         
         qard.links.forEach { link in
             let linkView = QardLinkView(link: link)

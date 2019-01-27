@@ -89,6 +89,13 @@ class HomeViewController: UICollectionViewController, FormViewDelegate, QRCodeRe
     @objc func launchNewQardForm() {
         let newQardFormViewController = NewQardFormViewController()
         newQardFormViewController.delegate = self
+        
+        // Set "bat bucket"
+        let image = UIImage.fontAwesomeIcon(name: .arrowLeft, style: .solid, textColor: .black, size: CGSize(width: Constants.fontAwesomeIconSize, height: Constants.fontAwesomeIconSize))
+        self.navigationController?.navigationBar.backIndicatorImage = image
+        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = image
+        self.navigationItem.title = " "
+
         self.navigationController?.pushViewController(newQardFormViewController, animated: true)
     }
     

@@ -14,6 +14,8 @@ target 'QaRd' do
   pod 'QRCodeReader.swift'
   pod 'VegaScrollFlowLayout'
   pod 'Alamofire'
+  pod 'ColorPickerRow', :git => 'https://github.com/EurekaCommunity/ColorPickerRow'  
+  pod 'UIColor_Hex_Swift'
 
   target 'QaRdTests' do
     inherit! :search_paths

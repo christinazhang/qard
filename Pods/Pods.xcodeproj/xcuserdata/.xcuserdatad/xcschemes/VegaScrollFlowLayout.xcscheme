@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "576F226E60B47287F57C8EC292340DB3"
+               BlueprintIdentifier = "C64666062455C6B8B4623AC2345EF81D"
                BlueprintName = "VegaScrollFlowLayout"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "VegaScrollFlowLayout.framework">

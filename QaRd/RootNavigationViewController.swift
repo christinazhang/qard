@@ -15,6 +15,7 @@ class RootNavigationViewController: UINavigationController {
         self.view.backgroundColor = .white
         // Do any additional setup after loading the view, typically from a nib.
         self.navigationBar.setValue(true, forKey: "hidesShadow")
+        self.navigationBar.isTranslucent = false
     }
 
 
