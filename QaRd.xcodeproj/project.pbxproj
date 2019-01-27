@@ -14,6 +14,8 @@
 		8623A97D650A63C79CC9FDFF /* Pods_QaRd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72E9D5D7B75C132F656F00C4 /* Pods_QaRd.framework */; };
 		CF1657CD21FD49C3005E9E26 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1657CC21FD49C3005E9E26 /* HomeViewController.swift */; };
 		CF1657EA21FD57AC005E9E26 /* BreeSerif-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF1657D121FD50AB005E9E26 /* BreeSerif-Regular.ttf */; };
+		CF1657F221FDA3A7005E9E26 /* FullScreenQardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1657F121FDA3A7005E9E26 /* FullScreenQardViewController.swift */; };
+		CF1657F421FDAA0A005E9E26 /* QardLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1657F321FDAA0A005E9E26 /* QardLinkView.swift */; };
 		CF28EB5B21FD37EE00F0346D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF28EB5A21FD37EE00F0346D /* AppDelegate.swift */; };
 		CF28EB5D21FD37EE00F0346D /* RootNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF28EB5C21FD37EE00F0346D /* RootNavigationViewController.swift */; };
 		CF28EB6021FD37EE00F0346D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF28EB5E21FD37EE00F0346D /* Main.storyboard */; };
@@ -56,6 +58,8 @@
 		B5AECCAD9B7F7597F0B06BF7 /* Pods-QaRdUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QaRdUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-QaRdUITests/Pods-QaRdUITests.release.xcconfig"; sourceTree = "<group>"; };
 		CF1657CC21FD49C3005E9E26 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		CF1657D121FD50AB005E9E26 /* BreeSerif-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BreeSerif-Regular.ttf"; sourceTree = "<group>"; };
+		CF1657F121FDA3A7005E9E26 /* FullScreenQardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenQardViewController.swift; sourceTree = "<group>"; };
+		CF1657F321FDAA0A005E9E26 /* QardLinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QardLinkView.swift; sourceTree = "<group>"; };
 		CF28EB5721FD37EE00F0346D /* QaRd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QaRd.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF28EB5A21FD37EE00F0346D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CF28EB5C21FD37EE00F0346D /* RootNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigationViewController.swift; sourceTree = "<group>"; };
@@ -169,6 +173,8 @@
 				4182CAFD21FD66E500FA8A9A /* NewQardFormViewController.swift */,
 				4182CAFF21FD716300FA8A9A /* Qard.swift */,
 				4182CB0121FD75F400FA8A9A /* NewLinkFormViewController.swift */,
+				CF1657F121FDA3A7005E9E26 /* FullScreenQardViewController.swift */,
+				CF1657F321FDAA0A005E9E26 /* QardLinkView.swift */,
 			);
 			path = QaRd;
 			sourceTree = "<group>";
@@ -386,6 +392,7 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
 				"${BUILT_PRODUCTS_DIR}/FontAwesome.swift/FontAwesome_swift.framework",
+				"${BUILT_PRODUCTS_DIR}/QRCodeReader.swift/QRCodeReader.framework",
 				"${BUILT_PRODUCTS_DIR}/VegaScrollFlowLayout/VegaScrollFlowLayout.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -393,6 +400,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FontAwesome_swift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/QRCodeReader.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/VegaScrollFlowLayout.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -407,9 +415,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF1657F421FDAA0A005E9E26 /* QardLinkView.swift in Sources */,
 				CF1657CD21FD49C3005E9E26 /* HomeViewController.swift in Sources */,
 				4182CB0021FD716300FA8A9A /* Qard.swift in Sources */,
 				CF28EB5D21FD37EE00F0346D /* RootNavigationViewController.swift in Sources */,
+				CF1657F221FDA3A7005E9E26 /* FullScreenQardViewController.swift in Sources */,
 				CF28EB5B21FD37EE00F0346D /* AppDelegate.swift in Sources */,
 				4182CAFE21FD66E500FA8A9A /* NewQardFormViewController.swift in Sources */,
 				4182CB0221FD75F400FA8A9A /* NewLinkFormViewController.swift in Sources */,

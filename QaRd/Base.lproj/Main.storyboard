@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -18,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="vfO-NL-278" kind="relationship" relationship="rootViewController" id="XUa-H3-aQH"/>
+                        <segue destination="gMS-Sr-bYg" kind="relationship" relationship="rootViewController" id="nV1-wK-au2"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="epW-O5-zdU" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -30,7 +31,7 @@
             <objects>
                 <collectionViewController id="vfO-NL-278" customClass="HomeViewController" customModule="QaRd" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="ymt-K0-QEe">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="zFE-lF-pAb">
@@ -60,6 +61,23 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XYq-5x-TeD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1297" y="-278"/>
+        </scene>
+        <!--Full Screen Qard View Controller-->
+        <scene sceneID="du5-Dc-a8H">
+            <objects>
+                <viewController id="gMS-Sr-bYg" customClass="FullScreenQardViewController" customModule="QaRd" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="A1F-Un-x0l">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="OMA-ZB-AQN"/>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <navigationItem key="navigationItem" id="Ys4-Oa-duh"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sLO-db-5lz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1308" y="415"/>
         </scene>
     </scenes>
 </document>

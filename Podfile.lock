@@ -2,12 +2,14 @@ PODS:
   - Alamofire (4.7.3)
   - Eureka (4.3.0)
   - FontAwesome.swift (1.4.6)
+  - QRCodeReader.swift (10.0.0)
   - VegaScrollFlowLayout (1.1)
 
 DEPENDENCIES:
   - Alamofire
   - Eureka
   - FontAwesome.swift
+  - QRCodeReader.swift
   - VegaScrollFlowLayout
 
 SPEC REPOS:
@@ -15,14 +17,16 @@ SPEC REPOS:
     - Alamofire
     - Eureka
     - FontAwesome.swift
+    - QRCodeReader.swift
     - VegaScrollFlowLayout
 
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
   Eureka: 6d711cb30ca333b4bc893110285a722ae3840114
   FontAwesome.swift: 18fb500c0decc2bbfadf2ae16a936704ec2c49bd
+  QRCodeReader.swift: 74d0378eb0c7807828552b49626bbc8307495aee
   VegaScrollFlowLayout: 9158061f29179147755f937c2b21693fc5dbbac3
 
-PODFILE CHECKSUM: 3044dffbe11e92866d9bde220ba9148e5ca14756
+PODFILE CHECKSUM: 052bded2087e03960b61c524710bc692d5633685
 
 COCOAPODS: 1.5.2

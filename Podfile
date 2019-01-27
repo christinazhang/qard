@@ -11,6 +11,7 @@ target 'QaRd' do
 
   pod 'Eureka'
   pod 'FontAwesome.swift'
+  pod 'QRCodeReader.swift'
   pod 'VegaScrollFlowLayout'
   pod 'Alamofire'
 
