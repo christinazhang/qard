@@ -9,13 +9,17 @@
 /* Begin PBXBuildFile section */
 		69CBB7DE2226B46E7980838D /* Pods_QaRdTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47A447926BB7777DD8560A82 /* Pods_QaRdTests.framework */; };
 		8623A97D650A63C79CC9FDFF /* Pods_QaRd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72E9D5D7B75C132F656F00C4 /* Pods_QaRd.framework */; };
+		CF1657CD21FD49C3005E9E26 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1657CC21FD49C3005E9E26 /* HomeViewController.swift */; };
+		CF1657EA21FD57AC005E9E26 /* BreeSerif-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF1657D121FD50AB005E9E26 /* BreeSerif-Regular.ttf */; };
 		CF28EB5B21FD37EE00F0346D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF28EB5A21FD37EE00F0346D /* AppDelegate.swift */; };
-		CF28EB5D21FD37EE00F0346D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF28EB5C21FD37EE00F0346D /* ViewController.swift */; };
+		CF28EB5D21FD37EE00F0346D /* RootNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF28EB5C21FD37EE00F0346D /* RootNavigationViewController.swift */; };
 		CF28EB6021FD37EE00F0346D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF28EB5E21FD37EE00F0346D /* Main.storyboard */; };
 		CF28EB6221FD37F400F0346D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF28EB6121FD37F400F0346D /* Assets.xcassets */; };
 		CF28EB6521FD37F400F0346D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF28EB6321FD37F400F0346D /* LaunchScreen.storyboard */; };
 		CF28EB7021FD37F500F0346D /* QaRdTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF28EB6F21FD37F500F0346D /* QaRdTests.swift */; };
 		CF28EB7B21FD37F500F0346D /* QaRdUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF28EB7A21FD37F500F0346D /* QaRdUITests.swift */; };
+		CF28EB8B21FD3ECD00F0346D /* QardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF28EB8A21FD3ECD00F0346D /* QardView.swift */; };
+		CF28EB8D21FD3F9F00F0346D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF28EB8C21FD3F9F00F0346D /* Constants.swift */; };
 		D14F2F51D3C2A7055EF45A46 /* Pods_QaRdUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E4B728FA50CE84C80EE8E76 /* Pods_QaRdUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -45,9 +49,11 @@
 		72E9D5D7B75C132F656F00C4 /* Pods_QaRd.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QaRd.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E4B728FA50CE84C80EE8E76 /* Pods_QaRdUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QaRdUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5AECCAD9B7F7597F0B06BF7 /* Pods-QaRdUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QaRdUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-QaRdUITests/Pods-QaRdUITests.release.xcconfig"; sourceTree = "<group>"; };
+		CF1657CC21FD49C3005E9E26 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		CF1657D121FD50AB005E9E26 /* BreeSerif-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BreeSerif-Regular.ttf"; sourceTree = "<group>"; };
 		CF28EB5721FD37EE00F0346D /* QaRd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QaRd.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF28EB5A21FD37EE00F0346D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CF28EB5C21FD37EE00F0346D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		CF28EB5C21FD37EE00F0346D /* RootNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigationViewController.swift; sourceTree = "<group>"; };
 		CF28EB5F21FD37EE00F0346D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CF28EB6121FD37F400F0346D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CF28EB6421FD37F400F0346D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -58,6 +64,8 @@
 		CF28EB7621FD37F500F0346D /* QaRdUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QaRdUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF28EB7A21FD37F500F0346D /* QaRdUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QaRdUITests.swift; sourceTree = "<group>"; };
 		CF28EB7C21FD37F500F0346D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CF28EB8A21FD3ECD00F0346D /* QardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QardView.swift; sourceTree = "<group>"; };
+		CF28EB8C21FD3F9F00F0346D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F857D99B769DA6CEABA76577 /* Pods-QaRdTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QaRdTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-QaRdTests/Pods-QaRdTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -112,6 +120,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		CF1657D021FD50A5005E9E26 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				CF1657D121FD50AB005E9E26 /* BreeSerif-Regular.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		CF28EB4E21FD37EE00F0346D = {
 			isa = PBXGroup;
 			children = (
@@ -137,12 +153,16 @@
 		CF28EB5921FD37EE00F0346D /* QaRd */ = {
 			isa = PBXGroup;
 			children = (
+				CF1657D021FD50A5005E9E26 /* Fonts */,
 				CF28EB5A21FD37EE00F0346D /* AppDelegate.swift */,
-				CF28EB5C21FD37EE00F0346D /* ViewController.swift */,
+				CF28EB5C21FD37EE00F0346D /* RootNavigationViewController.swift */,
 				CF28EB5E21FD37EE00F0346D /* Main.storyboard */,
 				CF28EB6121FD37F400F0346D /* Assets.xcassets */,
 				CF28EB6321FD37F400F0346D /* LaunchScreen.storyboard */,
 				CF28EB6621FD37F400F0346D /* Info.plist */,
+				CF28EB8A21FD3ECD00F0346D /* QardView.swift */,
+				CF28EB8C21FD3F9F00F0346D /* Constants.swift */,
+				CF1657CC21FD49C3005E9E26 /* HomeViewController.swift */,
 			);
 			path = QaRd;
 			sourceTree = "<group>";
@@ -276,6 +296,7 @@
 				CF28EB6521FD37F400F0346D /* LaunchScreen.storyboard in Resources */,
 				CF28EB6221FD37F400F0346D /* Assets.xcassets in Resources */,
 				CF28EB6021FD37EE00F0346D /* Main.storyboard in Resources */,
+				CF1657EA21FD57AC005E9E26 /* BreeSerif-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -381,8 +402,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CF28EB5D21FD37EE00F0346D /* ViewController.swift in Sources */,
+				CF1657CD21FD49C3005E9E26 /* HomeViewController.swift in Sources */,
+				CF28EB5D21FD37EE00F0346D /* RootNavigationViewController.swift in Sources */,
 				CF28EB5B21FD37EE00F0346D /* AppDelegate.swift in Sources */,
+				CF28EB8B21FD3ECD00F0346D /* QardView.swift in Sources */,
+				CF28EB8D21FD3F9F00F0346D /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

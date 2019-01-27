@@ -551,7 +551,7 @@ open class WalletView: UIView {
     }
     
     func layoutWalletView(animationDuration: TimeInterval? = nil,
-                          animationOptions: UIViewKeyframeAnimationOptions = [.beginFromCurrentState, .calculationModeCubic],
+                          animationOptions: UIView.KeyframeAnimationOptions = [.beginFromCurrentState, .calculationModeCubic],
                           placeVisibleCardViews: Bool = true,
                           completion: LayoutCompletion? = nil) {
         

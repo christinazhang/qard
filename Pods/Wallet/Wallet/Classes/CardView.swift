@@ -36,7 +36,7 @@ open class CardView: UIView {
     }
     
     /** This method is called when the card view is tapped. */
-    open func tapped() {
+    @objc open func tapped() {
         if let _ = walletView?.presentedCardView {
             walletView?.dismissPresentedCardView(animated: true)
         } else {
@@ -45,7 +45,7 @@ open class CardView: UIView {
     }
     
     /** This method is called when the card view is panned. */
-    open func panned(gestureRecognizer: UIPanGestureRecognizer) {
+    @objc open func panned(gestureRecognizer: UIPanGestureRecognizer) {
         
         switch gestureRecognizer.state {
         case .began:
@@ -59,7 +59,7 @@ open class CardView: UIView {
     }
     
     /** This method is called when the card view is long pressed. */
-    open func longPressed(gestureRecognizer: UILongPressGestureRecognizer) {
+    @objc open func longPressed(gestureRecognizer: UILongPressGestureRecognizer) {
         
         switch gestureRecognizer.state {
         case .began:
