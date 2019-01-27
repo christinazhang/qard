@@ -21,7 +21,8 @@ module.exports = async (userId = 'default', cardId = 'testCard', cardData = "") 
 
 var createCard = function(userId, cardId, cardData) {
     var docRef = database.collection("users").doc(userId);
-    var jsonCardData = JSON.parse(cardData);
+    var cardDataString = cardData.replace(/\\/g, '');
+    var jsonCardData = JSON.parse(cardDataString);
     jsonCardData["cardId"] = cardId;
     return docRef.get()
       .then(function(docData) {
