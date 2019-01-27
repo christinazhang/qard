@@ -75,7 +75,28 @@ class HomeViewController: UICollectionViewController, FormViewDelegate, QRCodeRe
         
         // Or by using the closure pattern
         readerVC.completionBlock = { (result: QRCodeReaderResult?) in
-            if let result = result {
+            if let value = result?.value {
+                let stuff = value.components(separatedBy: ",")
+                let userId = stuff[0].replacingOccurrences(of: "[", with: "", options: NSString.CompareOptions.literal)
+                let qardId = stuff[1].replacingOccurrences(of: "]", with: "", options: NSString.CompareOptions.literal)
+                print(qardId)
+                
+                QServerManager.shared().getUserCard(userId: userId, qardId: qardId).response { response in
+                    print("Response: \(String(describing: response.response))")
+                    if let data = response.data {
+                        do {
+                            let stringDic = try JSONSerialization.jsonObject(with: data, options: []) as? [String : Any]
+                            
+                            
+                            let cardId: String = (stringDic?["cardId"] as! String)
+                            
+                            
+                            let newQard: Qard = Qard(id: cardId, gradient: <#T##[CGColor]#>, isPrivate: <#T##Bool?#>, title: <#T##String?#>, subtitle: <#T##String?#>, links: <#T##[Link]#>)
+                        } catch let error {
+                            print(error)
+                        }
+                    }
+                }
             }
         }
         

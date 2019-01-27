@@ -60,11 +60,10 @@ class QServerManager {
         return Alamofire.request(encodedURL)
     }
     
-    func getUserCard(userId: String, qard: Qard) -> DataRequest {
-        let getUserCardURL: String = "https://qard.lib.id/qard@dev/getUserCard/?userId=\(userId)&cardId=\(qard.id ?? "")"
-        let encodedURL = getUserCardURL.addingPercentEncoding(withAllowedCharacters: allowedCharacterSet)!
-        
-        return Alamofire.request(encodedURL)
+    func getUserCard(userId: String, qardId: String) -> DataRequest {
+        let getUserCardURL: String = "https://qard.lib.id/qard@dev/getUserCard/?userId=\(userId)&cardId=\(qardId)"
+        print("IMAWOIFJALFHEWLFA", getUserCardURL)
+        return Alamofire.request(getUserCardURL)
     }
     
     func getUserCards(userId: String) -> DataRequest {
@@ -92,7 +91,7 @@ class QServerManager {
     }
 
     func generateQRCode(userId: String, qard: Qard) -> DataRequest {
-        let getUserCardURL: String = "[\(userId), \(qard.id ?? "")]"
+        let getUserCardURL: String = "\(userId),\(qard.id ?? "")"
         let encodedURL = getUserCardURL.addingPercentEncoding(withAllowedCharacters: allowedCharacterSet)
         
         // Yay for force unwraps~
