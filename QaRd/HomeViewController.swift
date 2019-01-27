@@ -26,8 +26,9 @@ class HomeViewController: UICollectionViewController, FormViewDelegate, QRCodeRe
         QServerManager.shared().getUserCards(userId: QServerManager.shared().userId).responseJSON { response in
             print(response)
             let jsonDecoder = JSONDecoder()
-            let qards = try? jsonDecoder.decode([Qard].self, from: response.data!)
-            self.qards = qards!
+            if let data = response.data, let qards = try? jsonDecoder.decode([Qard].self, from: data) {
+                self.qards = qards
+            }
             self.collectionView.reloadData()
         }
         

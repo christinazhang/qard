@@ -59,7 +59,7 @@ class Qard: Codable {
     
     func toJSON() -> [String: Any] {
         
-        if let id = self.id, let isPrivate = self.isPrivate, let title = self.title, let subtitle = self.subtitle {
+        if let id = self.id, let title = self.title, let subtitle = self.subtitle {
             
             var linkObject: [[String: Any]] = []
             for link in self.links {
