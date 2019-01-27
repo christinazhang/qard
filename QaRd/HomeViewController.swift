@@ -11,8 +11,10 @@ import UIKit
 import FontAwesome_swift
 import Alamofire
 import VegaScrollFlowLayout
+import AVFoundation
+import QRCodeReader
 
-class HomeViewController: UICollectionViewController, FormViewDelegate {
+class HomeViewController: UICollectionViewController, FormViewDelegate, QRCodeReaderViewControllerDelegate {
 
     private let reuseIdentifier = "QardCollectionViewCell"
     private var qards: [Qard] = [Qard(id: "card ID", gradient: [UIColor.purple.cgColor, UIColor.blue.cgColor], color: nil, isPrivate: false, title: "card title", subtitle: "this is a subtitle", links: []),]
@@ -39,7 +41,7 @@ class HomeViewController: UICollectionViewController, FormViewDelegate {
         let cameraBarButtonItem = UIBarButtonItem(title: String.fontAwesomeIcon(name: .camera),
                                                   style: .plain,
                                                   target: self,
-                                                  action: #selector(launchCamera))
+                                                  action: #selector(scanAction))
         cameraBarButtonItem.setTitleTextAttributes(cameraAttributes, for: .normal)
         cameraBarButtonItem.setTitleTextAttributes(cameraAttributes, for: .selected)
         cameraBarButtonItem.tintColor = .black
@@ -55,9 +57,31 @@ class HomeViewController: UICollectionViewController, FormViewDelegate {
 
     }
     
-    @objc func launchCamera() {
+    // Good practice: create the reader lazily to avoid cpu overload during the
+    // initialization and each time we need to scan a QRCode
+    lazy var readerVC: QRCodeReaderViewController = {
+        let builder = QRCodeReaderViewControllerBuilder {
+            $0.reader = QRCodeReader(metadataObjectTypes: [.qr], captureDevicePosition: .back)
+        }
         
+        return QRCodeReaderViewController(builder: builder)
+    }()
+    
+    @objc func scanAction(_ sender: AnyObject) {
+        // Retrieve the QRCode content
+        // By using the delegate pattern
+        readerVC.delegate = self
+        
+        // Or by using the closure pattern
+        readerVC.completionBlock = { (result: QRCodeReaderResult?) in
+            print(result)
+        }
+        
+        // Presents the readerVC as modal form sheet
+        readerVC.modalPresentationStyle = .formSheet
+        present(readerVC, animated: true, completion: nil)
     }
+    
     
     @objc func launchNewQardForm() {
         let newQardFormViewController = NewQardFormViewController()
@@ -71,6 +95,20 @@ class HomeViewController: UICollectionViewController, FormViewDelegate {
         self.qards.append(qard);
         self.collectionView.reloadData()
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    // MARK: - QRCodeReaderViewControllerDelegate
+    
+    func reader(_ reader: QRCodeReaderViewController, didScanResult result: QRCodeReaderResult) {
+        reader.stopScanning()
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func readerDidCancel(_ reader: QRCodeReaderViewController) {
+        reader.stopScanning()
+        
+        dismiss(animated: true, completion: nil)
     }
 }
 

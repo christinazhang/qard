@@ -23,17 +23,21 @@ class QardCollectionViewCell: UICollectionViewCell {
             self.backgroundColor = self.qard?.color
             
             
-            let QR: String = "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data="
-            let qardId: String = "testQard"
-            let userId: String = "wiji"
-            let parameters: Parameters = ["userId": userId, "cardId": qardId]
+            let QR: String = Constants.qrGeneratorURL
+            let allowedCharacterSet = (CharacterSet(charactersIn: "!*'();:@&=+$,/?%#[] ").inverted)
 
-            let qardServer: String = "https://qard.lib.id/qard@dev/getUserCard/?"
-            let URL: String = QR + qardServer
+            let qardServer: String = "https://qard.lib.id/qard@dev/getUserCard/?userId=wiji&cardId=\(qard?.id ?? "")"
+            let encodedURL = qardServer.addingPercentEncoding(withAllowedCharacters: allowedCharacterSet)
             
-            Alamofire.request(URL, parameters: parameters, encoding: URLEncoding.default).response { response in
+            // Yay for force unwraps~
+            let URL: String = QR + encodedURL!
+            
+            print(URL)
+
+            
+            Alamofire.request(URL).response { response in
                 print("Response: \(String(describing: response.response))")
-    
+
                 if let data = response.data {
                     let qrImage = UIImage(data: data,scale:1.0)
                     self.qrImageViewBackground.backgroundColor = .white

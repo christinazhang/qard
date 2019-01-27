@@ -53,7 +53,6 @@ class NewLinkFormViewController: FormViewController {
     
     override func willMove(toParent parent: UIViewController?) {
         super.willMove(toParent: parent);
-        
     }
     
     @objc func saveLink() {
