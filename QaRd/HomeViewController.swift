@@ -124,14 +124,32 @@ class HomeViewController: UICollectionViewController, FormViewDelegate, QRCodeRe
         let image = UIImage.fontAwesomeIcon(name: .arrowLeft, style: .solid, textColor: .black, size: CGSize(width: Constants.fontAwesomeIconSize, height: Constants.fontAwesomeIconSize))
         self.navigationController?.navigationBar.backIndicatorImage = image
         self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = image
+        
         self.navigationItem.title = " "
-
+        
+        self.navigationController?.pushViewController(newQardFormViewController, animated: true)
+    }
+    
+    func qardDidPressEdit(_ qard: Qard) {
+        let newQardFormViewController = NewQardFormViewController()
+        newQardFormViewController.delegate = self
+        newQardFormViewController.titleLabelText = "Edit QaRd"
+        newQardFormViewController.isNewCard = false
+        
+        newQardFormViewController.qard = qard
+        
+        // Set back button
+        let image = UIImage.fontAwesomeIcon(name: .arrowLeft, style: .solid, textColor: .black, size: CGSize(width: Constants.fontAwesomeIconSize, height: Constants.fontAwesomeIconSize))
+        self.navigationController?.navigationBar.backIndicatorImage = image
+        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = image
+        self.navigationItem.title = " "
+        
         self.navigationController?.pushViewController(newQardFormViewController, animated: true)
     }
     
     // MARK: - FormViewDelegate
     
-    func onFormComplete(qard: Qard) {
+    func onFormComplete(qard: Qard, isNewCard: Bool) {
         self.qards.append(qard);
         self.collectionView.reloadData()
         self.navigationController?.popViewController(animated: true)
@@ -172,6 +190,7 @@ extension HomeViewController {
         cell.layer.shadowOffset = CGSize(width: 0, height: 2);
         cell.layer.shadowRadius = 5;
         cell.layer.shadowOpacity = 0.5;
+        cell.delegate = self
         
         return cell
     }
