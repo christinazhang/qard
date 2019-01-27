@@ -110,6 +110,5 @@ class FullScreenQardViewController: UIViewController {
         self.initStackView()
         self.initLabels()
         self.setConstraints()
-        self.setQard(Qard(id: "ID", gradient: [UIColor.purple.cgColor, UIColor.magenta.cgColor], color: nil, isPrivate: nil, title: "Hello", subtitle: "Subtitle", links: [Link(url: "test", username: "Test", message: "Message")]))
     }
 }
