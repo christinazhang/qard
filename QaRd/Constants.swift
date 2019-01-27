@@ -13,6 +13,3 @@ class Constants {
     static let fontAwesomeIconSize: CGFloat = 20
 }
 
-enum Gradients {
-    
-}

@@ -30,7 +30,7 @@
             <objects>
                 <collectionViewController id="vfO-NL-278" customClass="HomeViewController" customModule="QaRd" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="ymt-K0-QEe">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="zFE-lF-pAb">
@@ -54,6 +54,7 @@
                             <outlet property="delegate" destination="vfO-NL-278" id="zgr-0v-4V8"/>
                         </connections>
                     </collectionView>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" id="FQO-aG-LDs"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XYq-5x-TeD" userLabel="First Responder" sceneMemberID="firstResponder"/>

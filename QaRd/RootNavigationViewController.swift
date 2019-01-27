@@ -12,8 +12,7 @@ class RootNavigationViewController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.pushViewController(HomeViewController(nibName: nil, bundle: nil), animated: false)
-//
+        self.view.backgroundColor = .white
         // Do any additional setup after loading the view, typically from a nib.
         self.navigationBar.setValue(true, forKey: "hidesShadow")
     }

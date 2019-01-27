@@ -21,7 +21,7 @@
 		CF28EB6521FD37F400F0346D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF28EB6321FD37F400F0346D /* LaunchScreen.storyboard */; };
 		CF28EB7021FD37F500F0346D /* QaRdTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF28EB6F21FD37F500F0346D /* QaRdTests.swift */; };
 		CF28EB7B21FD37F500F0346D /* QaRdUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF28EB7A21FD37F500F0346D /* QaRdUITests.swift */; };
-		CF28EB8B21FD3ECD00F0346D /* QardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF28EB8A21FD3ECD00F0346D /* QardView.swift */; };
+		CF28EB8B21FD3ECD00F0346D /* QardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF28EB8A21FD3ECD00F0346D /* QardCollectionViewCell.swift */; };
 		CF28EB8D21FD3F9F00F0346D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF28EB8C21FD3F9F00F0346D /* Constants.swift */; };
 		D14F2F51D3C2A7055EF45A46 /* Pods_QaRdUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E4B728FA50CE84C80EE8E76 /* Pods_QaRdUITests.framework */; };
 /* End PBXBuildFile section */
@@ -70,7 +70,7 @@
 		CF28EB7621FD37F500F0346D /* QaRdUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QaRdUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF28EB7A21FD37F500F0346D /* QaRdUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QaRdUITests.swift; sourceTree = "<group>"; };
 		CF28EB7C21FD37F500F0346D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CF28EB8A21FD3ECD00F0346D /* QardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QardView.swift; sourceTree = "<group>"; };
+		CF28EB8A21FD3ECD00F0346D /* QardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QardCollectionViewCell.swift; sourceTree = "<group>"; };
 		CF28EB8C21FD3F9F00F0346D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F857D99B769DA6CEABA76577 /* Pods-QaRdTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QaRdTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-QaRdTests/Pods-QaRdTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -166,7 +166,7 @@
 				CF28EB6121FD37F400F0346D /* Assets.xcassets */,
 				CF28EB6321FD37F400F0346D /* LaunchScreen.storyboard */,
 				CF28EB6621FD37F400F0346D /* Info.plist */,
-				CF28EB8A21FD3ECD00F0346D /* QardView.swift */,
+				CF28EB8A21FD3ECD00F0346D /* QardCollectionViewCell.swift */,
 				CF28EB8C21FD3F9F00F0346D /* Constants.swift */,
 				CF1657CC21FD49C3005E9E26 /* HomeViewController.swift */,
 				4182CAFD21FD66E500FA8A9A /* NewQardFormViewController.swift */,
@@ -417,7 +417,7 @@
 				CF28EB5B21FD37EE00F0346D /* AppDelegate.swift in Sources */,
 				4182CAFE21FD66E500FA8A9A /* NewQardFormViewController.swift in Sources */,
 				4182CB0221FD75F400FA8A9A /* NewLinkFormViewController.swift in Sources */,
-				CF28EB8B21FD3ECD00F0346D /* QardView.swift in Sources */,
+				CF28EB8B21FD3ECD00F0346D /* QardCollectionViewCell.swift in Sources */,
 				CF28EB8D21FD3F9F00F0346D /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

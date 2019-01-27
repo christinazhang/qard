@@ -13,8 +13,8 @@ import Alamofire
 import VegaScrollFlowLayout
 
 class HomeViewController: UICollectionViewController {
-    private let reuseIdentifier = "QardView"
-    private var qards: [Qard] = []
+    private let reuseIdentifier = "QardCollectionViewCell"
+    private var qards: [Qard] = [Qard(id: "card ID", gradient: [UIColor.purple.cgColor, UIColor.blue.cgColor], color: nil, isPrivate: false, title: "card title", subtitle: "this is a subtitle", links: nil),]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,12 +45,12 @@ class HomeViewController: UICollectionViewController {
         self.navigationItem.rightBarButtonItem = cameraBarButtonItem
         
         let layout = VegaScrollFlowLayout()
-        layout.itemSize = CGSize(width: self.collectionView.frame.width, height: 260)
+        layout.itemSize = CGSize(width: self.collectionView.frame.width - 64, height: 320)
         layout.sectionInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
         layout.minimumLineSpacing = 20
 
         self.collectionView.collectionViewLayout = layout
-        self.collectionView.register(QardView.self, forCellWithReuseIdentifier: self.reuseIdentifier)
+        self.collectionView.register(QardCollectionViewCell.self, forCellWithReuseIdentifier: self.reuseIdentifier)
 
     }
     
@@ -62,8 +62,6 @@ class HomeViewController: UICollectionViewController {
         let newQardFormViewController = NewQardFormViewController()
         self.navigationController?.pushViewController(newQardFormViewController, animated: true)
     }
-    
-    
 }
 
 // MARK: - UICollectionViewDelegate
@@ -77,11 +75,15 @@ extension HomeViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let qard = collectionView.dequeueReusableCell(withReuseIdentifier: self.reuseIdentifier, for: indexPath) as? QardView else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.reuseIdentifier, for: indexPath) as? QardCollectionViewCell else {
             return UICollectionViewCell()
         }
-        // Configure the qard
+        cell.qard = self.qards[indexPath.row]
+        cell.layer.masksToBounds = false;
+        cell.layer.shadowOffset = CGSize(width: 0, height: 2);
+        cell.layer.shadowRadius = 5;
+        cell.layer.shadowOpacity = 0.5;
         
-        return qard
+        return cell
     }
 }
