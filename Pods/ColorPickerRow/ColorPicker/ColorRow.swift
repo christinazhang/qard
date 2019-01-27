@@ -22,7 +22,7 @@ public final class ColorCell : Cell<UIColor>, CellType {
     private var dynamicConstraints = [NSLayoutConstraint]()
 
     required public init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        swatchView = ColorSwatchView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+        swatchView = ColorSwatchView(frame: CGRect(x: 0, y: 0, width: 60, height: 60))
         
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 

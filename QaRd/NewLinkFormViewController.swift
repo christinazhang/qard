@@ -21,8 +21,23 @@ class NewLinkFormViewController: FormViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.backgroundColor = UIColor.white
+        // Set Check Mark
+        let attributes = [NSAttributedString.Key.font: UIFont.fontAwesome(ofSize: Constants.fontAwesomeIconSize, style: .solid)]
+        let checkMarkBarButtonItem = UIBarButtonItem(title: String.fontAwesomeIcon(name: .check),
+                                                     style: .plain,
+                                                     target: self,
+                                                     action: #selector(saveLink))
+        checkMarkBarButtonItem.setTitleTextAttributes(attributes, for: .normal)
+        checkMarkBarButtonItem.setTitleTextAttributes(attributes, for: .selected)
+        checkMarkBarButtonItem.tintColor = .black
+        self.navigationItem.rightBarButtonItem = checkMarkBarButtonItem
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(saveLink))
+        let titleLabel = UILabel()
+        titleLabel.font = UIFont(name: "BreeSerif-Regular", size: 28)
+        titleLabel.text = "New Link"
+        titleLabel.sizeToFit()
+        self.navigationItem.titleView = titleLabel
         
         form +++ Section("Link Information")
             <<< TextRow(){ row in

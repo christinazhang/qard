@@ -48,6 +48,12 @@ class NewQardFormViewController: FormViewController, LinkFormDelegate {
         
         qard.links = [Link(url: "test", username: "fsafda", message: "dsfsd"), Link(url: "test2", username: "fsaf3333da", message: "444dsfsd")]
         
+        let swatches = Constants.gradients.map { (gradient) -> GradientSwatchView in
+            let gradientSwatchView = GradientSwatchView()
+            gradientSwatchView.gradient = gradient
+            return gradientSwatchView
+        }
+        
         form +++ Section("Core Qard")
             <<< TextRow(){ row in
                 row.title = "QaRd ID"
@@ -57,26 +63,18 @@ class NewQardFormViewController: FormViewController, LinkFormDelegate {
                     self.qard.id = row.value ?? "";
                 }
             //  Custom color palette example
-            <<< ColorPickerRow("colors2") { (row) in
-                row.title = "Background Color"
-                row.isCircular = true
-                row.showsCurrentSwatch = true
-                row.showsPaletteNames = false
-                row.value = UIColor.white
-                }
-                .cellSetup { (cell, row) in
-                    let palette = ColorPalette(name: "All",
-                                               palette: [ColorSpec(hex: "#ffffff", name: ""),
-                                                         ColorSpec(hex: "#e2e2e2", name: ""),
-                                                         ColorSpec(hex: "#c6c6c6", name: ""),
-                                                         ColorSpec(hex: "#aaaaaa", name: ""),
-                                                         ColorSpec(hex: "#8e8e8e", name: ""),
-                                                         ColorSpec(hex: "#707070", name: ""),
-                                                         ColorSpec(hex: "#545454", name: ""),
-                                                         ColorSpec(hex: "#383838", name: ""),
-                                                         ColorSpec(hex: "#1c1c1c", name: "")])
-                    cell.palettes = [palette]
-            }
+//            <<< GradientPickerRow() { row in
+//                row.title = "Gradient"
+//            }
+            <<< PushRow<Int>(){ row in
+                row.title = "Gradient"
+                row.options = [1, 2, 3, 4, 5, 6]
+                }.onPresent({ (from, to) in
+                    to.selectableRowCellUpdate = { cell, row in
+                        
+                        cell.contentView.addSubview(swatches[0])
+                    }
+                })
             <<< PushRow<[CGColor]>(){
                 $0.title = "Color"
                 $0.options = Constants.gradients
@@ -151,3 +149,81 @@ class NewQardFormViewController: FormViewController, LinkFormDelegate {
         self.delegate?.onFormComplete(qard: self.qard)
     }
 }
+
+public final class GradientPickerCell: Cell<[CGColor]>, CellType {
+    public var titleLabel: UILabel = UILabel()
+    public var selectedSwatchView: GradientSwatchView = GradientSwatchView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+    
+    public override func setup() {
+        super.setup()
+        
+        self.selectionStyle = .none
+        self.contentView.addSubview(self.titleLabel)
+        self.contentView.addSubview(self.selectedSwatchView)
+        self.selectedSwatchView.gradient = Constants.gradients[4]
+    }
+    
+}
+
+public class GradientSwatchView: UIView {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.layer.cornerRadius = 2
+        self.layer.masksToBounds = true
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
+    public var gradient: [CGColor]? {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
+    
+    override public func draw(_ rect: CGRect) {
+        if let gradient = self.gradient {
+            let gradientLayer = CAGradientLayer()
+            gradientLayer.colors = gradient
+            gradientLayer.frame = self.bounds
+            self.layer.addSublayer(gradientLayer)
+        }
+    }
+    
+}
+
+
+//public final class GradientPickerRow: Row<GradientPickerCell>, RowType {
+//    required public init(tag: String?) {
+//        super.init(tag: tag)
+//    }
+//}
+
+public final class GradientPickerRow : Row<PushSelectorCell<GradientSwatchView>>, RowType {
+    public required init(tag: String?) {
+        super.init(tag: tag)
+//        displayValueFor = {
+//            guard let location = $0 else { return "" }
+//            let fmt = NumberFormatter()
+//            fmt.maximumFractionDigits = 4
+//            fmt.minimumFractionDigits = 4
+//            let latitude = fmt.string(from: NSNumber(value: location.coordinate.latitude))!
+//            let longitude = fmt.string(from: NSNumber(value: location.coordinate.longitude))!
+//            return  "\(latitude), \(longitude)"
+//        }
+    }
+}
+    
+//    override public func customDidSelect() {
+//        super.customDidSelect()
+//        guard !isDisabled else { return }
+//
+//        let vc = MapViewController() { _ in }
+//        vc.row = self
+//        cell.formViewController()?.navigationController?.pushViewController(vc, animated: true)
+//        vc.onDismissCallback = { _ in
+//            vc.navigationController?.popViewController(animated: true)
+//        }
+//    }
+//}

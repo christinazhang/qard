@@ -18,7 +18,7 @@ class HomeViewController: UICollectionViewController, FormViewDelegate, QRCodeRe
 
     private let reuseIdentifier = "QardCollectionViewCell"
 
-    private var qards: [Qard] = [Qard(id: "card ID", gradient: Constants.gradients[2], isPrivate: false, title: "card title", subtitle: "this is a subtitle", links: []),]
+    private var qards: [Qard] = [Qard(id: "testQard", gradient: Constants.gradients[2], isPrivate: false, title: "card title", subtitle: "this is a subtitle", links: []),]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -91,7 +91,7 @@ class HomeViewController: UICollectionViewController, FormViewDelegate, QRCodeRe
                             let cardId: String = (stringDic?["cardId"] as! String)
                             
                             
-                            let newQard: Qard = Qard(id: cardId, gradient: <#T##[CGColor]#>, isPrivate: <#T##Bool?#>, title: <#T##String?#>, subtitle: <#T##String?#>, links: <#T##[Link]#>)
+//                            let newQard: Qard = Qard(id: cardId, gradient: <#T##[CGColor]#>, isPrivate: <#T##Bool?#>, title: <#T##String?#>, subtitle: <#T##String?#>, links: <#T##[Link]#>)
                         } catch let error {
                             print(error)
                         }
