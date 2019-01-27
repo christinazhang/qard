@@ -11,7 +11,7 @@ target 'QaRd' do
 
   pod 'Eureka'
   pod 'FontAwesome.swift'
-  pod 'Wallet'
+  pod 'VegaScrollFlowLayout'
   pod 'Alamofire'
 
   target 'QaRdTests' do

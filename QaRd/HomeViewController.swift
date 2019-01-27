@@ -10,16 +10,11 @@ import Foundation
 import UIKit
 import FontAwesome_swift
 import Alamofire
+import VegaScrollFlowLayout
 
-class HomeViewController: UIViewController {
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        self.view.backgroundColor = .white
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+class HomeViewController: UICollectionViewController {
+    private let reuseIdentifier = "QardView"
+    private var qards: [Qard] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +43,15 @@ class HomeViewController: UIViewController {
         cameraBarButtonItem.setTitleTextAttributes(cameraAttributes, for: .selected)
         cameraBarButtonItem.tintColor = .black
         self.navigationItem.rightBarButtonItem = cameraBarButtonItem
-    
+        
+        let layout = VegaScrollFlowLayout()
+        layout.itemSize = CGSize(width: self.collectionView.frame.width, height: 260)
+        layout.sectionInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
+        layout.minimumLineSpacing = 20
+
+        self.collectionView.collectionViewLayout = layout
+        self.collectionView.register(QardView.self, forCellWithReuseIdentifier: self.reuseIdentifier)
+
     }
     
     @objc func launchCamera() {
@@ -61,4 +64,24 @@ class HomeViewController: UIViewController {
     }
     
     
+}
+
+// MARK: - UICollectionViewDelegate
+extension HomeViewController {
+    override func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.qards.count
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let qard = collectionView.dequeueReusableCell(withReuseIdentifier: self.reuseIdentifier, for: indexPath) as? QardView else {
+            return UICollectionViewCell()
+        }
+        // Configure the qard
+        
+        return qard
+    }
 }

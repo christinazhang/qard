@@ -21,7 +21,7 @@ class Qard {
     var isPrivate: Bool?
     
     var title: String?
-    var subTitle: String?
+    var subtitle: String?
     
     var links: [String: String]?
 }

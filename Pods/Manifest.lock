@@ -2,27 +2,27 @@ PODS:
   - Alamofire (4.7.3)
   - Eureka (4.3.0)
   - FontAwesome.swift (1.4.6)
-  - Wallet (1.4.1)
+  - VegaScrollFlowLayout (1.1)
 
 DEPENDENCIES:
   - Alamofire
   - Eureka
   - FontAwesome.swift
-  - Wallet
+  - VegaScrollFlowLayout
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - Eureka
     - FontAwesome.swift
-    - Wallet
+    - VegaScrollFlowLayout
 
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
   Eureka: 6d711cb30ca333b4bc893110285a722ae3840114
   FontAwesome.swift: 18fb500c0decc2bbfadf2ae16a936704ec2c49bd
-  Wallet: 9f2942aa81aacf627fee3a42c11acf97fbacbd5d
+  VegaScrollFlowLayout: 9158061f29179147755f937c2b21693fc5dbbac3
 
-PODFILE CHECKSUM: 1a4df433c8ec166f9658a24dc270ba662915969d
+PODFILE CHECKSUM: 3044dffbe11e92866d9bde220ba9148e5ca14756
 
 COCOAPODS: 1.5.2

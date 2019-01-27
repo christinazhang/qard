@@ -50,7 +50,7 @@ class NewQardFormViewController: FormViewController {
                 row.title = "Subtitle"
                 row.placeholder = "Subtitle of Qard"
                 }.onChange {row in
-                    self.qard.subTitle = row.value ?? "";
+                    self.qard.subtitle = row.value ?? "";
             }
             +++  MultivaluedSection(multivaluedOptions: [.Reorder, .Insert, .Delete],
                                     header: "Multivalued TextField",
@@ -73,9 +73,7 @@ class NewQardFormViewController: FormViewController {
                                             }.onCellSelection{ cell, row in
                                                 let newLinkFormViewController = NewLinkFormViewController()
                                                 self.navigationController?.pushViewController(newLinkFormViewController, animated: true)
-                                                newLinkFormViewController.willMove(toParent: self) {
-                                                    
-                                                }
+                                                newLinkFormViewController.willMove(toParent: self)
                                         }
         }
         

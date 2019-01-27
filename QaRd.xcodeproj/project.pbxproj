@@ -390,14 +390,14 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
 				"${BUILT_PRODUCTS_DIR}/FontAwesome.swift/FontAwesome_swift.framework",
-				"${BUILT_PRODUCTS_DIR}/Wallet/Wallet.framework",
+				"${BUILT_PRODUCTS_DIR}/VegaScrollFlowLayout/VegaScrollFlowLayout.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FontAwesome_swift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Wallet.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/VegaScrollFlowLayout.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -603,6 +603,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = me.christinazhang.QaRd;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ENFORCE_EXCLUSIVE_ACCESS = "debug-only";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -622,6 +623,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = me.christinazhang.QaRd;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ENFORCE_EXCLUSIVE_ACCESS = "debug-only";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
