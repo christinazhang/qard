@@ -76,7 +76,6 @@ class HomeViewController: UICollectionViewController, FormViewDelegate, QRCodeRe
         // Or by using the closure pattern
         readerVC.completionBlock = { (result: QRCodeReaderResult?) in
             if let result = result {
-                // Make api request to https
             }
         }
         
