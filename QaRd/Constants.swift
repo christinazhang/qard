@@ -28,7 +28,7 @@ class Constants {
     
     typealias IconInfo = (style: FontAwesomeStyle, icon: FontAwesome)
     static let iconMap: [String : IconInfo] = [
-        "github.com" : (.brands, .github),
+//        "github.com" : (.brands, .github),
         "facebook.com" : (.brands, .facebookF),
         "500px.com" : (.brands, .fiveHundredPixels),
         "amazon" : (.brands, .amazon),

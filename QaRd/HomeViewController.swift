@@ -73,7 +73,7 @@ class HomeViewController: UICollectionViewController, FormViewDelegate, QRCodeRe
         // By using the delegate pattern
         readerVC.delegate = self
         
-        QServerManager.shared().getUserCard(userId: "wiji", qardId: "testQard").response { response in
+        QServerManager.shared().getUserCard(userId: "testUser1", qardId: "testCard1").response { response in
             print("Response: \(String(describing: response.response))")
             if let data = response.data {
                 do {
@@ -81,13 +81,21 @@ class HomeViewController: UICollectionViewController, FormViewDelegate, QRCodeRe
                     print (stringDic)
                     
                     if let jsonString = stringDic {
-                        let cardId = jsonString["cardId"] ?? ""
-                        let title = stringDic?["title"] ?? ""
-                        let subtitle = jsonString["subtitle"] ?? ""
-                        let links = jsonString["links"] ?? []
+                        let cardId = jsonString["cardId"] as? String ?? "no card id"
+                        let title = stringDic?["title"] as? String ?? "no title"
+                        let subtitle = jsonString["subtitle"] as? String ?? "no subtitle"
+                        let gradientIndex = jsonString["gradient"] as? Int ?? 0
+                        let linksDict = jsonString["links"] as? [[String : String]]
+                        
+                        let links = linksDict?.map({ (category) -> Link in
+                            let username = category["username"] ?? "no username"
+                            let url = category["url"] ?? "no url"
+                            let message = category["message"] ?? "no message"
+                            return Link(url: url, username: username, message: message)
+                        }) ?? []
                         
                         let vc = FullScreenQardViewController()
-                        let qard =  Qard(id: cardId as? String, gradient: Constants.gradients[0], isPrivate: true, title: title as? String, subtitle: subtitle as? String, links: links as! [Link])
+                        let qard =  Qard(id: cardId, gradient: Constants.gradients[gradientIndex], isPrivate: true, title: title, subtitle: subtitle, links: links)
                         vc.setQard(qard)
                         self.navigationController?.pushViewController(vc, animated: true)
                     }
