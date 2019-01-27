@@ -18,7 +18,7 @@ class HomeViewController: UICollectionViewController, FormViewDelegate, QRCodeRe
     
     private let reuseIdentifier = "QardCollectionViewCell"
     
-//    private var qards: [Qard] = [Qard(id: "testQard", gradient: 2, isPrivate: false, title: "card title", subtitle: "this is a subtitle", links: []),]
+    //    private var qards: [Qard] = [Qard(id: "testQard", gradient: 2, isPrivate: false, title: "card title", subtitle: "this is a subtitle", links: []),]
     private var qards: [Qard] = []
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,40 +82,6 @@ class HomeViewController: UICollectionViewController, FormViewDelegate, QRCodeRe
         // By using the delegate pattern
         readerVC.delegate = self
         
-        QServerManager.shared().getUserCard(userId: "testUser1", qardId: "testCard1").response { response in
-            print("Response: \(String(describing: response.response))")
-            if let data = response.data {
-                do {
-                    let stringDic = try JSONSerialization.jsonObject(with: data, options: []) as? [String : Any]
-                    print (stringDic)
-                    
-                    if let jsonString = stringDic {
-                        let cardId = jsonString["cardId"] as? String ?? "no card id"
-                        let title = stringDic?["title"] as? String ?? "no title"
-                        let subtitle = jsonString["subtitle"] as? String ?? "no subtitle"
-                        let gradientIndex = jsonString["gradient"] as? Int ?? 0
-                        let linksDict = jsonString["links"] as? [[String : String]]
-                        
-                        let links = linksDict?.map({ (category) -> Link in
-                            let username = category["username"] ?? "no username"
-                            let url = category["url"] ?? "no url"
-                            let message = category["message"] ?? "no message"
-                            return Link(url: url, username: username, message: message)
-                        }) ?? []
-                        
-                        let vc = FullScreenQardViewController()
-                        let qard =  Qard(id: cardId, gradient: gradientIndex, isPrivate: true, title: title, subtitle: subtitle, links: links)
-                        vc.setQard(qard)
-                        self.navigationController?.pushViewController(vc, animated: true)
-                    }
-                    
-                    
-                } catch let error {
-                    print(error)
-                }
-            }
-        }
-        
         // Or by using the closure pattern
         readerVC.completionBlock = { (result: QRCodeReaderResult?) in
             if let value = result?.value {
@@ -123,7 +89,40 @@ class HomeViewController: UICollectionViewController, FormViewDelegate, QRCodeRe
                 let userId = stuff[0].replacingOccurrences(of: "[", with: "", options: NSString.CompareOptions.literal)
                 let qardId = stuff[1].replacingOccurrences(of: "]", with: "", options: NSString.CompareOptions.literal)
                 print(qardId)
-                // PUT IT BACK LATER
+                
+                QServerManager.shared().getUserCard(userId: userId, qardId: qardId).response { response in
+                    print("Response: \(String(describing: response.response))")
+                    if let data = response.data {
+                        do {
+                            let stringDic = try JSONSerialization.jsonObject(with: data, options: []) as? [String : Any]
+                            print (stringDic)
+                            
+                            if let jsonString = stringDic {
+                                let cardId = jsonString["cardId"] as? String ?? "no card id"
+                                let title = stringDic?["title"] as? String ?? "no title"
+                                let subtitle = jsonString["subtitle"] as? String ?? "no subtitle"
+                                let gradientIndex = jsonString["gradient"] as? Int ?? 0
+                                let linksDict = jsonString["links"] as? [[String : String]]
+                                
+                                let links = linksDict?.map({ (category) -> Link in
+                                    let username = category["username"] ?? "no username"
+                                    let url = category["url"] ?? "no url"
+                                    let message = category["message"] ?? "no message"
+                                    return Link(url: url, username: username, message: message)
+                                }) ?? []
+                                
+                                let vc = FullScreenQardViewController()
+                                let qard =  Qard(id: cardId, gradient: gradientIndex, isPrivate: true, title: title, subtitle: subtitle, links: links)
+                                vc.setQard(qard)
+                                self.navigationController?.pushViewController(vc, animated: true)
+                            }
+                            
+                            
+                        } catch let error {
+                            print(error)
+                        }
+                    }
+                }
             }
         }
         
@@ -167,7 +166,9 @@ class HomeViewController: UICollectionViewController, FormViewDelegate, QRCodeRe
     // MARK: - FormViewDelegate
     
     func onFormComplete(qard: Qard, isNewCard: Bool) {
-        self.qards.append(qard);
+        if isNewCard {
+            self.qards.append(qard);
+        }
         self.collectionView.reloadData()
         self.navigationController?.popViewController(animated: true)
     }

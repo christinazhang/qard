@@ -65,7 +65,7 @@ class NewQardFormViewController: FormViewController, LinkFormDelegate {
             <<< PushRow<Int>(){ row in
                 row.title = "Gradient"
                 row.options = [1, 2, 3, 4, 5]
-                row.value = qard.gradient ?? 0
+                row.value = qard.gradient
                 row.tag = "gradient"
                 }.onPresent({ (from, to) in
                     to.selectableRowCellUpdate = { cell, row in
@@ -142,9 +142,17 @@ class NewQardFormViewController: FormViewController, LinkFormDelegate {
     @objc func saveQard() {
         let userId = QServerManager.shared().userId
         
-        QServerManager.shared().createCard(userId: userId, qard: self.qard).responseJSON{ response in
-            self.delegate?.onFormComplete(qard: self.qard, isNewCard: true)
+        if self.isNewCard {
+            QServerManager.shared().createCard(userId: userId, qard: self.qard).responseJSON{ response in
+                self.delegate?.onFormComplete(qard: self.qard, isNewCard: self.isNewCard)
+            }
+        } else {
+            QServerManager.shared().updateCard(userId: userId, qard: self.qard).responseJSON{ response in
+                self.delegate?.onFormComplete(qard: self.qard, isNewCard: self.isNewCard)
+            }
         }
+        
+
         
     }
 }

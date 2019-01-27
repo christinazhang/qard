@@ -90,13 +90,18 @@ class QServerManager {
     }
     
     func updateCard(userId: String, qard: Qard) -> DataRequest {
-        let jsonString = self.asString(jsonDictionary: qard.toJSON())
 
+        let jsonEncoder = JSONEncoder()
+        let jsonData = try! jsonEncoder.encode(qard)
+        let jsonString = String(data: jsonData, encoding: .utf8)
         
-        let updateCardURL: String = "https://qard.lib.id/qard@dev/updateCard/?userId=a&cardId=b&cardData=\(jsonString)"
-        let encodedURL = updateCardURL.addingPercentEncoding(withAllowedCharacters: allowedCharacterSet)!
         
-        return Alamofire.request(encodedURL)
+        let getSavedCardsURL: String = "https://qard.lib.id/qard@dev/updateCard/?userId=\(userId)&cardId=\(qard.id ?? "")&cardData=\(jsonString ?? "")"
+        
+        let encodedUrl = getSavedCardsURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        
+        print("encodedURL", encodedUrl)
+        return Alamofire.request(encodedUrl)
     }
 
     func generateQRCode(userId: String = "wiji", qard: Qard) -> DataRequest {

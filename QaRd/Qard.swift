@@ -31,7 +31,7 @@ class Qard: Codable {
     var id: String?
     var gradient: Int = 0
     //    var color: UIColor?
-    var isPrivate: Bool = true
+    var isPrivate: Bool?
     
     var title: String?
     var subtitle: String?
@@ -41,7 +41,7 @@ class Qard: Codable {
     init(id: String?,
          gradient: Int,
          //        color: UIColor?,
-        isPrivate: Bool?,
+        isPrivate: Bool? = true,
         title: String?,
         subtitle: String?,
         links: [Link]) {
