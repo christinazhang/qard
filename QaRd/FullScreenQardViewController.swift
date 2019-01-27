@@ -65,7 +65,6 @@ class FullScreenQardViewController: UIViewController {
             self.subtitleLabel.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -16),
             
             self.stackView.topAnchor.constraint(equalTo: self.subtitleLabel.bottomAnchor, constant: 32),
-//            self.stackView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -80),
             self.stackView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 16),
             self.stackView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -16),
         ])

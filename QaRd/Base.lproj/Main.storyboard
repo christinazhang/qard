@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="gMS-Sr-bYg" kind="relationship" relationship="rootViewController" id="wQq-j0-hgf"/>
+                        <segue destination="vfO-NL-278" kind="relationship" relationship="rootViewController" id="XE1-I9-AQQ"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="epW-O5-zdU" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -31,7 +31,7 @@
             <objects>
                 <collectionViewController id="vfO-NL-278" customClass="HomeViewController" customModule="QaRd" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="ymt-K0-QEe">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="zFE-lF-pAb">
@@ -67,7 +67,7 @@
             <objects>
                 <viewController id="gMS-Sr-bYg" customClass="FullScreenQardViewController" customModule="QaRd" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="A1F-Un-x0l">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="OMA-ZB-AQN"/>
