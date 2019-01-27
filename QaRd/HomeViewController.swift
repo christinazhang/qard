@@ -73,6 +73,32 @@ class HomeViewController: UICollectionViewController, FormViewDelegate, QRCodeRe
         // By using the delegate pattern
         readerVC.delegate = self
         
+        QServerManager.shared().getUserCard(userId: "wiji", qardId: "testQard").response { response in
+            print("Response: \(String(describing: response.response))")
+            if let data = response.data {
+                do {
+                    let stringDic = try JSONSerialization.jsonObject(with: data, options: []) as? [String : Any]
+                    print (stringDic)
+                    
+                    if let jsonString = stringDic {
+                        let cardId = (jsonString["cardId"])
+                        let title = (jsonString["title"])
+                        let subtitle = (jsonString["subtitle"])
+                        
+                        
+                        let vc = FullScreenQardViewController()
+                        let qard =  Qard(id: cardId as? String, gradient: Constants.gradients[0], isPrivate: true, title: "temp", subtitle: "tesmp", links: [])
+                        vc.setQard(qard)
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }
+                    
+                    
+                } catch let error {
+                    print(error)
+                }
+            }
+        }
+        
         // Or by using the closure pattern
         readerVC.completionBlock = { (result: QRCodeReaderResult?) in
             if let value = result?.value {
@@ -80,23 +106,7 @@ class HomeViewController: UICollectionViewController, FormViewDelegate, QRCodeRe
                 let userId = stuff[0].replacingOccurrences(of: "[", with: "", options: NSString.CompareOptions.literal)
                 let qardId = stuff[1].replacingOccurrences(of: "]", with: "", options: NSString.CompareOptions.literal)
                 print(qardId)
-                
-                QServerManager.shared().getUserCard(userId: userId, qardId: qardId).response { response in
-                    print("Response: \(String(describing: response.response))")
-                    if let data = response.data {
-                        do {
-                            let stringDic = try JSONSerialization.jsonObject(with: data, options: []) as? [String : Any]
-                            
-                            
-                            let cardId: String = (stringDic?["cardId"] as! String)
-                            
-                            
-//                            let newQard: Qard = Qard(id: cardId, gradient: <#T##[CGColor]#>, isPrivate: <#T##Bool?#>, title: <#T##String?#>, subtitle: <#T##String?#>, links: <#T##[Link]#>)
-                        } catch let error {
-                            print(error)
-                        }
-                    }
-                }
+            // PUT IT BACK LATER
             }
         }
         
