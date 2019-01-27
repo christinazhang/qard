@@ -30,23 +30,23 @@ class Link: Equatable {
 class Qard {
     var id: String?
     var gradient: [CGColor] = []
-//    var color: UIColor?
+    //    var color: UIColor?
     var isPrivate: Bool?
     
     var title: String?
     var subtitle: String?
     
     var links: [Link] = []
-
+    
     init(id: String?,
          gradient: [CGColor],
-//        color: UIColor?,
+         //        color: UIColor?,
         isPrivate: Bool?,
         title: String?,
         subtitle: String?,
         links: [Link]) {
         self.id = id
-//        self.color = color
+        //        self.color = color
         self.gradient = gradient
         self.title = title
         self.subtitle = subtitle
@@ -56,4 +56,32 @@ class Qard {
     convenience init() {
         self.init(id: nil, gradient: [], isPrivate: nil, title: nil, subtitle: nil, links: [])
     }
+    
+    func toJSON() -> [String: Any] {
+        
+        if let id = self.id, let isPrivate = self.isPrivate, let title = self.title, let subtitle = self.subtitle {
+            
+            var linkObject: [[String: Any]] = []
+            for link in self.links {
+                linkObject.append(["URL": link.URL, "username": link.username, "message": link.message])
+                
+            }
+            
+            let jsonObject: [String: Any] = [
+                "id": id,
+                "isPrivate": isPrivate,
+                "title": title,
+                "subtitle": subtitle,
+                "links": linkObject
+            ]
+            
+            JSONSerialization.isValidJSONObject(jsonObject)
+            
+            return jsonObject
+        }
+        
+        return [:]
+    }
 }
+
+

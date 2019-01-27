@@ -41,9 +41,12 @@ class QServerManager {
     }
     
     func createCard(userId: String, qard: Qard) -> DataRequest {
-       
         
-        let getSavedCardsURL: String = " https://qard.lib.id/qard@dev/createCard/?userId=\(userId)&cardId=\(qard.id)&cardData=%7B%7D"
+//        let jsonData = try JSONSerialization.data(withJSONObject: qard.toJSON(), options: [])
+        
+        
+
+        let getSavedCardsURL: String = " https://qard.lib.id/qard@dev/createCard/?userId=\(userId)&cardId=\(qard.id)&cardData="
         let encodedURL = getSavedCardsURL.addingPercentEncoding(withAllowedCharacters: allowedCharacterSet)!
         
         return Alamofire.request(encodedURL)
