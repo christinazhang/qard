@@ -105,7 +105,7 @@ public class ColorSwatchView : UIView {
             path.fill()
             
             if isSelected {
-                let frameColor = color.blackOrGrayContrastingColor()
+                let frameColor = UIColor.white // color.blackOrGrayContrastingColor()
                 let selectRect = bounds.insetBy(dx: 2.0, dy: 2.0)
                 let selectPath = isCircular ? UIBezierPath(ovalIn: selectRect) : UIBezierPath(roundedRect: selectRect, cornerRadius: CGFloat(Int(selectRect.width * 0.2)))
 

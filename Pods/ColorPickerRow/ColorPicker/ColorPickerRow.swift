@@ -27,7 +27,7 @@ public final class ColorPickerCell : Cell<UIColor>, CellType, UICollectionViewDe
     public var showsPaletteNames = true {
         didSet {
             if oldValue != showsPaletteNames {
-                (colorsView.collectionViewLayout as? UICollectionViewFlowLayout)?.headerReferenceSize = showsPaletteNames ? CGSize(width: 20.0, height: 20.0) : CGSize(width: 0.0, height: 0.0)
+                (colorsView.collectionViewLayout as? UICollectionViewFlowLayout)?.headerReferenceSize = showsPaletteNames ? CGSize(width: 40.0, height: 40.0) : CGSize(width: 0.0, height: 0.0)
                 colorsView.reloadData()
             }
         }

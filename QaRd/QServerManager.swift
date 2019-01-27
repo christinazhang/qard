@@ -92,7 +92,7 @@ class QServerManager {
     }
 
     func generateQRCode(userId: String, qard: Qard) -> DataRequest {
-        let getUserCardURL: String = "[\(userId), \(qard.id ?? "")]"
+        let getUserCardURL: String = "[\(userId),\(qard.id ?? "")]"
         let encodedURL = getUserCardURL.addingPercentEncoding(withAllowedCharacters: allowedCharacterSet)
         
         // Yay for force unwraps~
