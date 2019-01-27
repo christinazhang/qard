@@ -11,18 +11,28 @@ import UIKit
 import Eureka
 typealias Emoji = String
 
-class NewQardFormViewController: FormViewController {
+protocol FormViewDelegate: class {
+    func onFormComplete(qard: Qard) 
+}
+
+class NewQardFormViewController: FormViewController, LinkFormDelegate {
     
     var qard: Qard = Qard();
+    weak var delegate: FormViewDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(saveQard))
+        
+        qard.links = [Link(url: "test", username: "fsafda", message: "dsfsd"), Link(url: "test2", username: "fsaf3333da", message: "444dsfsd")]
+        
         form +++ Section("Core Qard")
             <<< TextRow(){ row in
                 row.title = "Qard Id"
                 row.placeholder = "Enter text here"
                 row.tag = "qardId"
-                }.onChange {row in
+                }.onChange { row in
                     self.qard.id = row.value ?? "";
             }
             <<< PushRow<UIColor>(){
@@ -36,11 +46,11 @@ class NewQardFormViewController: FormViewController {
             <<< SwitchRow() { row in      // initializer
                 row.title = "Private"
                 row.tag = "private"
-                }.onChange {row in
+                }.onChange { row in
                     self.qard.isPrivate = row.value ?? true;
             }
             +++ Section("Header")
-            <<< TextRow(){ row in
+            <<< TextRow() { row in
                 row.title = "Title"
                 row.placeholder = "Title of Qard"
                 }.onChange {row in
@@ -52,33 +62,39 @@ class NewQardFormViewController: FormViewController {
                 }.onChange {row in
                     self.qard.subtitle = row.value ?? "";
             }
-            +++  MultivaluedSection(multivaluedOptions: [.Reorder, .Insert, .Delete],
-                                    header: "Multivalued TextField",
-                                    footer: ".Insert adds a 'Add Item' (Add New Tag) button row as last cell.") {
-                                        $0.addButtonProvider = { section in
-                                            return ButtonRow() { row in
-                                                row.title = "Add Link"
-                                                }.onCellSelection{ cell, row in
-                                                    let newLinkFormViewController = NewLinkFormViewController()
-                                                    self.navigationController?.pushViewController(newLinkFormViewController, animated: true)
-                                            }
-                                        }
-                                        $0.multivaluedRowToInsertAt = { index in
-                                            return NameRow() {
-                                                $0.placeholder = "Tag Name"
-                                            }
-                                        }
-                                        $0 <<< ButtonRow() { row in
-                                            row.title = "Add Link"
-                                            }.onCellSelection{ cell, row in
-                                                let newLinkFormViewController = NewLinkFormViewController()
-                                                self.navigationController?.pushViewController(newLinkFormViewController, animated: true)
-                                                newLinkFormViewController.willMove(toParent: self)
-                                        }
+            
+            +++ SelectableSection<ListCheckRow<String>>("Links", selectionType: .singleSelection(enableDeselection: true))
+        
+            <<< ButtonRow() { row in
+                row.title = "Add Link"
+                }.onCellSelection{ cell, row in
+                    let newLinkFormViewController = NewLinkFormViewController()
+                    newLinkFormViewController.delegate = self
+                    self.navigationController?.pushViewController(newLinkFormViewController, animated: true)
+            }
+        
+        for link in self.qard.links {
+            form.last! <<< ListCheckRow<Link>(link.URL) { listRow in
+                listRow.title = link.URL
+                listRow.selectableValue = link
+                listRow.value = nil
+                listRow.onCellSelection { cell, row in
+                    let newLinkFormViewController = NewLinkFormViewController()
+                    newLinkFormViewController.delegate = self
+                    newLinkFormViewController.link = link
+                    self.navigationController?.pushViewController(newLinkFormViewController, animated: true)
+                }
+            }
         }
-        
-        
-        
-        
+    }
+    
+    func onLinkComplete(link: Link) {
+        self.qard.links.append(link)
+        self.tableView.reloadData()
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func saveQard() {
+        self.delegate?.onFormComplete(qard: self.qard)
     }
 }

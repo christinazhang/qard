@@ -22,7 +22,16 @@ class QardCollectionViewCell: UICollectionViewCell {
             self.layer.insertSublayer(gradientLayer, at: 0)
             self.backgroundColor = self.qard?.color
             
-            Alamofire.request("https://api.qrserver.com/v1/create-qr-code/?size=175x175&data=wiji").response { response in
+            
+            let QR: String = "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data="
+            let qardId: String = "testQard"
+            let userId: String = "wiji"
+            let parameters: Parameters = ["userId": userId, "cardId": qardId]
+
+            let qardServer: String = "https://qard.lib.id/qard@dev/getUserCard/?"
+            let URL: String = QR + qardServer
+            
+            Alamofire.request(URL, parameters: parameters, encoding: URLEncoding.default).response { response in
                 print("Response: \(String(describing: response.response))")
     
                 if let data = response.data {

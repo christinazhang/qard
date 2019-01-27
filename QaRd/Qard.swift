@@ -9,11 +9,23 @@
 import Foundation
 import UIKit
 
-class Link {
+class Link: Equatable {
+    static func == (lhs: Link, rhs: Link) -> Bool {
+        return (lhs.message == rhs.message && lhs.URL == rhs.URL && lhs.username == rhs.username)
+    }
+    
     var URL: String?
     var username: String?
     var message: String?
+    
+    convenience init(url: String, username:String, message:String) {
+        self.init()
+        self.URL = url
+        self.username = username
+        self.message = message
+    }
 }
+
 
 class Qard {
     var id: String?
@@ -24,15 +36,15 @@ class Qard {
     var title: String?
     var subtitle: String?
     
-    var links: [String: String]?
-    
+    var links: [Link] = []
+
     init(id: String?,
          gradient: [CGColor],
         color: UIColor?,
         isPrivate: Bool?,
         title: String?,
         subtitle: String?,
-        links: [String: String]?) {
+        links: [Link]) {
         self.id = id
         self.color = color
         self.gradient = gradient
@@ -42,6 +54,6 @@ class Qard {
     }
     
     convenience init() {
-        self.init(id: nil, gradient: [], color: nil, isPrivate: nil, title: nil, subtitle: nil, links: nil)
+        self.init(id: nil, gradient: [], color: nil, isPrivate: nil, title: nil, subtitle: nil, links: [])
     }
 }

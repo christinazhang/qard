@@ -12,9 +12,10 @@ import FontAwesome_swift
 import Alamofire
 import VegaScrollFlowLayout
 
-class HomeViewController: UICollectionViewController {
+class HomeViewController: UICollectionViewController, FormViewDelegate {
+
     private let reuseIdentifier = "QardCollectionViewCell"
-    private var qards: [Qard] = [Qard(id: "card ID", gradient: [UIColor.purple.cgColor, UIColor.blue.cgColor], color: nil, isPrivate: false, title: "card title", subtitle: "this is a subtitle", links: nil),]
+    private var qards: [Qard] = [Qard(id: "card ID", gradient: [UIColor.purple.cgColor, UIColor.blue.cgColor], color: nil, isPrivate: false, title: "card title", subtitle: "this is a subtitle", links: []),]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,9 +61,19 @@ class HomeViewController: UICollectionViewController {
     
     @objc func launchNewQardForm() {
         let newQardFormViewController = NewQardFormViewController()
+        newQardFormViewController.delegate = self
         self.navigationController?.pushViewController(newQardFormViewController, animated: true)
     }
+    
+    // MARK: - FormViewDelegate
+    
+    func onFormComplete(qard: Qard) {
+        self.qards.append(qard);
+        self.collectionView.reloadData()
+        self.navigationController?.popViewController(animated: true)
+    }
 }
+
 
 // MARK: - UICollectionViewDelegate
 extension HomeViewController {
