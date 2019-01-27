@@ -10,12 +10,10 @@ import Foundation
 import UIKit
 
 class QardView: UIView {
-    var title: String
-    var subtitle: String
+    var qard: Qard
     
-    init(title: String, subtitle: String) {
-        self.title = title
-        self.subtitle = subtitle
+    init(qard: Qard) {
+        self.qard = qard
         super.init(frame: .zero)
     }
     

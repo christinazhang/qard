@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import FontAwesome_swift
+import Alamofire
 
 class HomeViewController: UIViewController {
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -25,6 +26,8 @@ class HomeViewController: UIViewController {
         
         // Set "New QaRd" button
         let plusButton = UIButton(type: .custom)
+        plusButton.addTarget(self, action: #selector(launchNewQardForm), for: .touchUpInside)
+
         let plusIconImage = UIImage.fontAwesomeIcon(name: .plus, style: .solid, textColor: .black, size: CGSize(width: Constants.fontAwesomeIconSize, height: Constants.fontAwesomeIconSize))
         let plusAttributes: [NSAttributedString.Key : Any] = [.font : UIFont(name: "Avenir-Heavy", size: 16)!]
         let plusAttributedString = NSAttributedString(string: "New QaRd", attributes: plusAttributes)
@@ -32,6 +35,7 @@ class HomeViewController: UIViewController {
         plusButton.setImage(plusIconImage, for: .normal)
         plusButton.setTitleColor(.black, for: .normal)
         plusButton.setAttributedTitle(plusAttributedString, for: .normal)
+        
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: plusButton)
         
         // Set Camera Button
@@ -44,9 +48,17 @@ class HomeViewController: UIViewController {
         cameraBarButtonItem.setTitleTextAttributes(cameraAttributes, for: .selected)
         cameraBarButtonItem.tintColor = .black
         self.navigationItem.rightBarButtonItem = cameraBarButtonItem
+    
     }
     
     @objc func launchCamera() {
         
     }
+    
+    @objc func launchNewQardForm() {
+        let newQardFormViewController = NewQardFormViewController()
+        self.navigationController?.pushViewController(newQardFormViewController, animated: true)
+    }
+    
+    
 }
