@@ -95,5 +95,5 @@ class QServerManager {
         let URL: String = self.QR + encodedURL!
         return Alamofire.request(URL)
     }
-    
+
 }

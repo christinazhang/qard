@@ -1,0 +1,12 @@
+{
+  "name": "qard/qard",
+  "version": "0.0.3",
+  "author": "QaRd",
+  "stdlib": {
+    "name": "qard/qard",
+    "timeout": 10000
+  },
+  "dependencies": {
+    "firebase": "^5.8.1"
+  }
+}
